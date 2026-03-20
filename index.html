@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши Расширения для Браузера</title>
+    <!-- Подключаем Tailwind CSS для стилей -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключаем Lucide Icons для иконок -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Настройки Tailwind для кастомных цветов -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            850: '#1f2937',
+                            900: '#111827',
+                            950: '#030712',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Плавная прокрутка */
+        html { scroll-behavior: smooth; }
+        /* Стилизация скроллбара */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen font-sans antialiased flex flex-col">
+
+    <!-- Навигация -->
+    <nav class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="bg-blue-600 p-2 rounded-lg">
+                        <i data-lucide="blocks" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">ExtHub</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline">Наш GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный блок (Hero) -->
+    <main class="flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Полезные расширения для вашего браузера
+                </h1>
+                <p class="text-lg text-gray-400 mb-8">
+                    Скачивайте наши кастомные плагины напрямую. Безопасно, быстро и с открытым исходным кодом.
+                </p>
+                
+                <!-- Поиск -->
+                <div class="relative max-w-xl mx-auto">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="h-5 w-5 text-gray-500"></i>
+                    </div>
+                    <input type="text" id="searchInput" class="block w-full pl-10 pr-3 py-3 border border-gray-700 rounded-xl leading-5 bg-gray-850 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Поиск расширений...">
+                </div>
+            </div>
+
+            <!-- Инструкция по установке (Сворачиваемая) -->
+            <div class="max-w-4xl mx-auto mb-12 bg-blue-900/20 border border-blue-800/50 rounded-2xl p-1">
+                <button id="instructionToggle" class="w-full flex items-center justify-between p-4 text-left focus:outline-none rounded-xl hover:bg-blue-900/30 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-blue-500/20 p-2 rounded-lg text-blue-400">
+                            <i data-lucide="info" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-medium text-blue-100">Как установить и настроить автообновление?</span>
+                    </div>
+                    <i data-lucide="chevron-down" id="instructionIcon" class="w-5 h-5 text-blue-400 transition-transform duration-300"></i>
+                </button>
+                <div id="instructionContent" class="hidden px-6 pb-6 pt-2 text-sm text-blue-200">
+                    <p class="mb-3 font-medium text-yellow-300">Из-за политики безопасности браузеров прямая установка со сторонних сайтов заблокирована. Требуется ручная установка файла, но обновления будут прилетать автоматически!</p>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li>Скачайте файл расширения (в формате <code>.crx</code>) по кнопке ниже.</li>
+                        <li>Откройте новую вкладку в браузере и перейдите по адресу <code>chrome://extensions/</code> (или <code>edge://extensions/</code>).</li>
+                        <li>В правом верхнем углу обязательно включите <strong>"Режим разработчика"</strong> (Developer mode).</li>
+                        <li><strong>Перетащите</strong> скачанный файл <code>.crx</code> из папки "Загрузки" прямо в окно браузера с открытой страницей расширений.</li>
+                        <li>Подтвердите установку. Готово! В дальнейшем расширение будет обновляться само, когда автор загрузит новую версию на сайт.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Сетка расширений -->
+            <div id="extensionsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Расширения будут генерироваться здесь через JavaScript -->
+            </div>
+            
+            <!-- Сообщение если ничего не найдено -->
+            <div id="noResults" class="hidden text-center py-12">
+                <i data-lucide="frown" class="w-16 h-16 text-gray-600 mx-auto mb-4"></i>
+                <h3 class="text-xl font-medium text-gray-400">Расширения не найдены</h3>
+                <p class="text-gray-500 mt-2">Попробуйте изменить поисковый запрос</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="border-t border-gray-800 bg-gray-900 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-gray-500 text-sm">
+                &copy; <span id="currentYear"></span> ExtHub Team. Все права защищены.
+            </p>
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+                <a href="#" class="hover:text-gray-300 transition-colors">GitHub</a>
+                <a href="#" class="hover:text-gray-300 transition-colors">Telegram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Установка текущего года в футере
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Инициализация иконок Lucide
+        lucide.createIcons();
+
+        // Логика сворачивания/разворачивания инструкции
+        const toggleBtn = document.getElementById('instructionToggle');
+        const content = document.getElementById('instructionContent');
+        const icon = document.getElementById('instructionIcon');
+
+        toggleBtn.addEventListener('click', () => {
+            content.classList.toggle('hidden');
+            if(content.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+
+        // Глобальная переменная для хранения загруженных данных
+        let extensions = [];
+
+        // Функция для рендера карточек
+        const grid = document.getElementById('extensionsGrid');
+        const noResults = document.getElementById('noResults');
+
+        function renderExtensions(data) {
+            grid.innerHTML = ''; // Очищаем сетку
+            
+            if (data.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+
+            data.forEach(ext => {
+                const tagsHtml = ext.tags.map(tag => 
+                    `<span class="px-2 py-1 text-xs font-medium bg-gray-800 text-gray-300 rounded-md border border-gray-700">${tag}</span>`
+                ).join('');
+
+                const card = document.createElement('div');
+                card.className = "bg-gray-850 rounded-2xl p-6 border border-gray-800 hover:border-gray-700 transition-all hover:shadow-lg hover:-translate-y-1 flex flex-col h-full group relative overflow-hidden";
+                
+                // Декоративный градиент при наведении
+                card.innerHTML = `
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                    
+                    <div class="flex items-start justify-between mb-4 relative z-10">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 rounded-xl ${ext.bgColor}">
+                                <i data-lucide="${ext.icon}" class="w-8 h-8 ${ext.color}"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white group-hover:text-blue-400 transition-colors">${ext.name}</h3>
+                                <div class="text-xs text-gray-500 mt-1">Версия ${ext.version}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-400 text-sm mb-6 flex-grow relative z-10">
+                        ${ext.description}
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6 relative z-10">
+                        ${tagsHtml}
+                    </div>
+                    
+                    <div class="mt-auto pt-4 border-t border-gray-800 flex items-center justify-between relative z-10">
+                        <span class="text-xs text-gray-500" title="Последнее обновление">Обн: ${ext.updatedAt}</span>
+                        <a href="${ext.downloadUrl}" download class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-blue-900/20">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            Скачать .crx
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Перерисовываем иконки для новых элементов
+            lucide.createIcons();
+        }
+
+        // Асинхронная загрузка данных из внешнего JSON файла
+        async function loadExtensions() {
+            try {
+                const response = await fetch('extensions.json');
+                if (!response.ok) {
+                    throw new Error('Сетевая ошибка при загрузке JSON');
+                }
+                extensions = await response.json();
+                renderExtensions(extensions);
+            } catch (error) {
+                console.error("Ошибка загрузки:", error);
+                grid.classList.remove('hidden');
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-8 text-red-400 bg-red-900/10 border border-red-800/50 rounded-xl">
+                        <p class="font-medium mb-2">Не удалось загрузить список расширений.</p>
+                        <p class="text-sm opacity-80">Убедитесь, что файл <code>extensions.json</code> существует рядом с <code>index.html</code>.<br>(При локальном открытии файла без веб-сервера может возникать ошибка CORS).</p>
+                    </div>`;
+            }
+        }
+
+        // Запускаем загрузку при открытии страницы
+        loadExtensions();
+
+        // Логика поиска
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            const filtered = extensions.filter(ext => {
+                return ext.name.toLowerCase().includes(query) || 
+                       ext.description.toLowerCase().includes(query) ||
+                       ext.tags.some(tag => tag.toLowerCase().includes(query));
+            });
+            
+            renderExtensions(filtered);
+        });
+    </script>
+</body>
+</html>

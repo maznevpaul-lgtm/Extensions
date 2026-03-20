@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
+
+  <!-- =================================================== -->
+  <!-- Блок для первого расширения (например, VK Audio Saver) -->
+  <!-- =================================================== -->
+  <app appid="ТУТ_ID_РАСШИРЕНИЯ_1">
+    <updatecheck 
+        codebase="https://ВАШ_ЛОГИН.github.io/ВАШ_РЕПОЗИТОРИЙ/extensions/vk-audio/extension.crx" 
+        version="1.2.0" 
+    />
+  </app>
+
+  <!-- =================================================== -->
+  <!-- Блок для второго расширения (например, Dark Theme Pro) -->
+  <!-- =================================================== -->
+  <app appid="ТУТ_ID_РАСШИРЕНИЯ_2">
+    <updatecheck 
+        codebase="https://ВАШ_ЛОГИН.github.io/ВАШ_РЕПОЗИТОРИЙ/extensions/dark-theme/extension.crx" 
+        version="2.0.1" 
+    />
+  </app>
+
+  <!-- Если добавляете третье расширение, просто скопируйте блок <app>...</app> и вставьте ниже -->
+
+</gupdate>
