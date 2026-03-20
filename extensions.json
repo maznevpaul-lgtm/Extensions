@@ -20,7 +20,7 @@
     "id": "SaveVideoAs",
     "name": "Скачай видео",
     "name_en": "Download video",
-    "version": "2.0",
+    "version": "1.0",
     "description": "Добавляет кнопку и пункт в контекстное меню для сохранения видео с сайтов.",
     "description_en": "Adds a button and item to the context menu for saving videos from sites.",
     "icon": "monitor-play",
