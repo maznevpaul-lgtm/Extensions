@@ -99,12 +99,43 @@
                         <li data-i18n="inst_li4"><strong>Перетащите</strong> скачанный файл <code>.crx</code> из папки "Загрузки" прямо в окно браузера с открытой страницей расширений.</li>
                         <li data-i18n="inst_li5">Подтвердите установку. Готово! В дальнейшем расширение будет обновляться само, когда автор загрузит новую версию на сайт.</li>
                     </ol>
+                    
+                    <div class="mt-5 p-4 bg-blue-900/30 rounded-xl border border-blue-800/50 space-y-3">
+                        <p class="text-blue-300" data-i18n="inst_note1"><strong class="text-blue-200">Для Яндекс Браузера и Opera:</strong> При нажатии на скачивание браузер может сразу начать установку. Сверху появится сообщение — нажмите на него, чтобы перейти в раздел расширений и разрешить установку там.</p>
+                        <p class="text-yellow-400 font-medium" data-i18n="inst_note2">⚠️ Важно: Если вы разархивируете скачанный .crx файл и установите его папкой (как распакованное расширение), автоматические обновления прилетать НЕ БУДУТ!</p>
+                        
+                        <div class="text-emerald-300 border-t border-blue-800/50 pt-3 mt-3">
+                            <strong class="text-emerald-200" data-i18n="inst_mobile_title">О мобильных браузерах:</strong> 
+                            <span data-i18n="inst_mobile_desc">Не все мобильные браузеры поддерживают расширения. Рекомендуемые варианты:</span>
+                            <ul class="list-disc list-inside mt-2 space-y-1 ml-2 text-sm text-blue-200">
+                                <li data-i18n="inst_mobile_kiwi"><strong>Kiwi Browser</strong> — позволяет устанавливать почти любые расширения из Chrome Web Store.</li>
+                                <li data-i18n="inst_mobile_yandex"><strong>Yandex Browser</strong> — поддерживает часть расширений для Chrome и Opera.</li>
+                                <li data-i18n="inst_mobile_lemur"><strong>Lemur Browser</strong> — специализированный браузер с упором на поддержку расширений.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Сетка расширений -->
-            <div id="extensionsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <!-- Контент генерируется JS -->
+            <!-- Сетки расширений -->
+            <div class="max-w-6xl mx-auto">
+                <!-- Секция ПК -->
+                <div id="desktopSection" class="mb-12 hidden">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 border-b border-gray-800 pb-3">
+                        <i data-lucide="monitor" class="w-6 h-6 text-blue-400"></i>
+                        <span data-i18n="desktop_title">Расширения для ПК</span>
+                    </h2>
+                    <div id="desktopGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                </div>
+
+                <!-- Секция Мобайл -->
+                <div id="mobileSection" class="mb-12 hidden">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 border-b border-gray-800 pb-3">
+                        <i data-lucide="smartphone" class="w-6 h-6 text-emerald-400"></i>
+                        <span data-i18n="mobile_title">Мобильные расширения</span>
+                    </h2>
+                    <div id="mobileGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                </div>
             </div>
             
             <!-- Сообщение если ничего не найдено -->
@@ -155,6 +186,15 @@
                 inst_li3: "В правом верхнем углу обязательно включите <strong>\"Режим разработчика\"</strong> (Developer mode).",
                 inst_li4: "<strong>Перетащите</strong> скачанный файл <code>.crx</code> из папки \"Загрузки\" прямо в окно браузера с открытой страницей расширений.",
                 inst_li5: "Подтвердите установку. Готово! В дальнейшем расширение будет обновляться само, когда автор загрузит новую версию на сайт.",
+                inst_note1: "<strong class=\"text-blue-200\">Для Яндекс Браузера и Opera:</strong> При нажатии на скачивание браузер может сразу начать установку. Сверху появится сообщение — нажмите на него, чтобы перейти в раздел расширений и разрешить установку там.",
+                inst_note2: "⚠️ Важно: Если вы разархивируете скачанный .crx файл и установите его папкой (как распакованное расширение), автоматические обновления прилетать НЕ БУДУТ!",
+                inst_mobile_title: "О мобильных браузерах:",
+                inst_mobile_desc: "Не все мобильные браузеры поддерживают расширения. Рекомендуемые варианты:",
+                inst_mobile_kiwi: "<strong>Kiwi Browser</strong> — позволяет устанавливать почти любые расширения из Chrome Web Store.",
+                inst_mobile_yandex: "<strong>Yandex Browser</strong> — поддерживает часть расширений для Chrome и Opera.",
+                inst_mobile_lemur: "<strong>Lemur Browser</strong> — специализированный браузер с упором на поддержку расширений.",
+                desktop_title: "Расширения для ПК",
+                mobile_title: "Мобильные расширения",
                 no_results: "Расширения не найдены",
                 no_results_sub: "Попробуйте изменить поисковый запрос",
                 footer_rights: "Все права защищены.",
@@ -175,6 +215,15 @@
                 inst_li3: "In the top right corner, make sure to enable <strong>\"Developer mode\"</strong>.",
                 inst_li4: "<strong>Drag and drop</strong> the downloaded <code>.crx</code> file from your Downloads folder directly into the browser window with the extensions page open.",
                 inst_li5: "Confirm the installation. Done! The extension will update automatically when the author uploads a new version to the site.",
+                inst_note1: "<strong class=\"text-blue-200\">For Yandex and Opera users:</strong> When you click download, the browser might immediately start the installation. A message will appear at the top — click it to go to the extensions section and allow the installation there.",
+                inst_note2: "⚠️ Important: If you unzip the downloaded .crx file and install it as a folder (unpacked extension), automatic updates WILL NOT WORK!",
+                inst_mobile_title: "About mobile browsers:",
+                inst_mobile_desc: "Not all mobile browsers support extensions. Recommended options:",
+                inst_mobile_kiwi: "<strong>Kiwi Browser</strong> — allows installing almost any extension from the Chrome Web Store.",
+                inst_mobile_yandex: "<strong>Yandex Browser</strong> — supports some extensions for Chrome and Opera.",
+                inst_mobile_lemur: "<strong>Lemur Browser</strong> — a specialized browser focused on extension support.",
+                desktop_title: "Desktop Extensions",
+                mobile_title: "Mobile Extensions",
                 no_results: "No extensions found",
                 no_results_sub: "Try changing your search query",
                 footer_rights: "All rights reserved.",
@@ -221,73 +270,99 @@
         // ==========================================
         // ЛОГИКА РАСШИРЕНИЙ
         // ==========================================
-        const grid = document.getElementById('extensionsGrid');
+        const desktopGrid = document.getElementById('desktopGrid');
+        const mobileGrid = document.getElementById('mobileGrid');
+        const desktopSection = document.getElementById('desktopSection');
+        const mobileSection = document.getElementById('mobileSection');
         const noResults = document.getElementById('noResults');
 
-        function renderExtensions(data) {
-            grid.innerHTML = ''; 
-            
-            if (data.length === 0) {
-                grid.classList.add('hidden');
-                noResults.classList.remove('hidden');
-                return;
-            }
-
-            grid.classList.remove('hidden');
-            noResults.classList.add('hidden');
-
+        function createCardElement(ext, platform) {
             const t_version = translations[currentLang].version;
             const t_updated = translations[currentLang].updated;
             const t_download = translations[currentLang].download;
 
-            data.forEach(ext => {
-                // Выбираем правильный язык для данных из JSON.
-                // Если английской версии нет, показываем русскую (fallback)
-                const name = (currentLang === 'en' && ext.name_en) ? ext.name_en : ext.name;
-                const description = (currentLang === 'en' && ext.description_en) ? ext.description_en : ext.description;
-                const tags = (currentLang === 'en' && ext.tags_en) ? ext.tags_en : ext.tags;
-                const updatedAt = (currentLang === 'en' && ext.updatedAt_en) ? ext.updatedAt_en : ext.updatedAt;
+            const name = (currentLang === 'en' && ext.name_en) ? ext.name_en : ext.name;
+            const description = (currentLang === 'en' && ext.description_en) ? ext.description_en : ext.description;
+            const tags = (currentLang === 'en' && ext.tags_en) ? ext.tags_en : ext.tags;
+            const updatedAt = (currentLang === 'en' && ext.updatedAt_en) ? ext.updatedAt_en : ext.updatedAt;
 
-                const tagsHtml = tags.map(tag => 
-                    `<span class="px-2 py-1 text-xs font-medium bg-gray-800 text-gray-300 rounded-md border border-gray-700">${tag}</span>`
-                ).join('');
+            const tagsHtml = tags.map(tag => 
+                `<span class="px-2 py-1 text-xs font-medium bg-gray-800 text-gray-300 rounded-md border border-gray-700">${tag}</span>`
+            ).join('');
 
-                const card = document.createElement('div');
-                card.className = "bg-gray-850 rounded-2xl p-6 border border-gray-800 hover:border-gray-700 transition-all hover:shadow-lg hover:-translate-y-1 flex flex-col h-full group relative overflow-hidden";
+            // Применяем разные цвета в зависимости от платформы
+            const isMobile = platform === 'mobile';
+            const hoverBorder = isMobile ? 'hover:border-emerald-500/50' : 'hover:border-blue-500/50';
+            const titleHover = isMobile ? 'group-hover:text-emerald-400' : 'group-hover:text-blue-400';
+            const btnColor = isMobile ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/20' : 'bg-blue-600 hover:bg-blue-500 shadow-blue-900/20';
+
+            const card = document.createElement('div');
+            card.className = `bg-gray-850 rounded-2xl p-6 border border-gray-800 transition-all hover:shadow-lg hover:-translate-y-1 flex flex-col h-full group relative overflow-hidden ${hoverBorder}`;
+            
+            card.innerHTML = `
+                <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                 
-                card.innerHTML = `
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                    
-                    <div class="flex items-start justify-between mb-4 relative z-10">
-                        <div class="flex items-center gap-4">
-                            <div class="p-3 rounded-xl ${ext.bgColor}">
-                                <i data-lucide="${ext.icon}" class="w-8 h-8 ${ext.color}"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white group-hover:text-blue-400 transition-colors">${name}</h3>
-                                <div class="text-xs text-gray-500 mt-1">${t_version} ${ext.version}</div>
-                            </div>
+                <div class="flex items-start justify-between mb-4 relative z-10">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 rounded-xl ${ext.bgColor}">
+                            <i data-lucide="${ext.icon}" class="w-8 h-8 ${ext.color}"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white ${titleHover} transition-colors">${name}</h3>
+                            <div class="text-xs text-gray-500 mt-1">${t_version} ${ext.version}</div>
                         </div>
                     </div>
-                    
-                    <p class="text-gray-400 text-sm mb-6 flex-grow relative z-10">
-                        ${description}
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2 mb-6 relative z-10">
-                        ${tagsHtml}
-                    </div>
-                    
-                    <div class="mt-auto pt-4 border-t border-gray-800 flex items-center justify-between relative z-10">
-                        <span class="text-xs text-gray-500">${t_updated} ${updatedAt}</span>
-                        <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-blue-900/20">
-                            <i data-lucide="download" class="w-4 h-4"></i>
-                            <span>${t_download}</span>
-                        </button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+                </div>
+                
+                <p class="text-gray-400 text-sm mb-6 flex-grow relative z-10">
+                    ${description}
+                </p>
+                
+                <div class="flex flex-wrap gap-2 mb-6 relative z-10">
+                    ${tagsHtml}
+                </div>
+                
+                <div class="mt-auto pt-4 border-t border-gray-800 flex items-center justify-between relative z-10">
+                    <span class="text-xs text-gray-500">${t_updated} ${updatedAt}</span>
+                    <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="inline-flex items-center gap-2 px-4 py-2 ${btnColor} text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>${t_download}</span>
+                    </button>
+                </div>
+            `;
+            return card;
+        }
+
+        function renderExtensions(data) {
+            desktopGrid.innerHTML = ''; 
+            mobileGrid.innerHTML = '';
+            
+            if (data.length === 0) {
+                desktopSection.classList.add('hidden');
+                mobileSection.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+
+            // Фильтруем данные: все, у кого стоит "mobile" идут вниз, остальные (по умолчанию) - наверх (для ПК)
+            const desktopExts = data.filter(ext => ext.platform !== 'mobile');
+            const mobileExts = data.filter(ext => ext.platform === 'mobile');
+
+            if (desktopExts.length > 0) {
+                desktopSection.classList.remove('hidden');
+                desktopExts.forEach(ext => desktopGrid.appendChild(createCardElement(ext, 'desktop')));
+            } else {
+                desktopSection.classList.add('hidden');
+            }
+
+            if (mobileExts.length > 0) {
+                mobileSection.classList.remove('hidden');
+                mobileExts.forEach(ext => mobileGrid.appendChild(createCardElement(ext, 'mobile')));
+            } else {
+                mobileSection.classList.add('hidden');
+            }
 
             lucide.createIcons();
         }
@@ -297,6 +372,7 @@
             event.preventDefault();
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
+            const originalClass = btn.className; // Запоминаем оригинальный класс кнопки
             const t_downloading = translations[currentLang].downloading;
             
             // Включаем анимацию загрузки на кнопке
@@ -307,7 +383,7 @@
             try {
                 // Скачиваем файл как "сырые" данные (blob)
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Сетевая ошибка при скачивании');
+                if (!response.ok) throw new Error('Сетевая ошибка при скачивании или файл не найден (404)');
                 
                 const blob = await response.blob();
                 const blobUrl = window.URL.createObjectURL(blob);
@@ -323,15 +399,28 @@
                 // Очищаем память
                 window.URL.revokeObjectURL(blobUrl);
                 a.remove();
-            } catch (error) {
-                console.error('Ошибка скачивания:', error);
-                // Если fetch не сработал, пытаемся открыть как обычно в новой вкладке
-                window.open(url, '_blank');
-            } finally {
+                
                 // Возвращаем кнопку в нормальное состояние
                 btn.innerHTML = originalText;
                 lucide.createIcons();
                 btn.style.pointerEvents = 'auto';
+            } catch (error) {
+                console.error('Ошибка скачивания:', error);
+                
+                // Показываем красивую ошибку прямо на кнопке вместо открытия новой вкладки
+                const errorText = currentLang === 'ru' ? 'Файл не найден' : 'File not found';
+                btn.innerHTML = `<i data-lucide="x-circle" class="w-4 h-4 text-white"></i><span>${errorText}</span>`;
+                // Ставим красные стили для ошибки
+                btn.className = "inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-red-900/20";
+                lucide.createIcons();
+                
+                // Возвращаем как было через 3 секунды
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.className = originalClass; // Возвращаем именно тот цвет, который был (синий или изумрудный)
+                    lucide.createIcons();
+                    btn.style.pointerEvents = 'auto';
+                }, 3000);
             }
         };
 

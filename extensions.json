@@ -1,7 +1,8 @@
 [
   {
     "id": "SaveImageAsExt",
-    "name": "Save Image as",
+    "name": "Сохранить картинку как...",
+    "name_en": "Save Image as...",
     "version": "1.0",
     "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
     "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
@@ -16,50 +17,55 @@
   },
   
   {
-    "id": "SaveImageAsExt",
-    "name": "Save Image as",
+    "id": "SaveVideoAs",
+    "name": "Скачай видео",
+    "name_en": "Download video",
     "version": "1.0",
-    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
-    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
-    "icon": "image-down",
+    "description": "Добавляет кнопку и пункт в контекстное меню для сохранения видео с сайтов.",
+    "description_en": "Adds a button and item to the context menu for saving videos from sites.",
+    "icon": "monitor-play",
     "color": "text-blue-400",
     "bgColor": "bg-blue-400/10",
     "updatedAt": "20 Марта 2026",
     "updatedAt_en": "March 20, 2026",
-    "downloadUrl": "extensions/SaveImageAsExt.crx",
+    "downloadUrl": "extensions/SaveVideoAs.crx",
+    "tags": ["Медиа", "Видео"],
+    "tags_en": ["Media", "Video"]
+  },
+
+  {
+    "id": "SaveImageAsExt",
+    "name": "Сохранить картинку как...",
+    "name_en": "Save Image as...",
+    "platform": "mobile",
+    "version": "1.0",
+    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG. на сматрфоне",
+    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG. on a smartphone",
+    "icon": "image-play",
+    "color": "text-emerald-400",
+    "bgColor": "bg-emerald-400/10",
+    "updatedAt": "20 Марта 2026",
+    "updatedAt_en": "March 20, 2026",
+    "downloadUrl": "extensions/SaveImageAsExtMob.crx",
     "tags": ["Медиа", "Картинки"],
     "tags_en": ["Media", "Image"]
   },
 
   {
     "id": "SaveImageAsExt",
-    "name": "Save Image as",
+    "name": "Скачай видео на смартфоне",
+    "name_en": "Download videos on your smartphone",
+    "platform": "mobile",
     "version": "1.0",
-    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
-    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
-    "icon": "image-down",
-    "color": "text-blue-400",
-    "bgColor": "bg-blue-400/10",
+    "description": "Добавляет кнопку и пункт в контекстное меню для сохранения видео с сайтов на смартфоне.",
+    "description_en": "Adds a button and item to the context menu for saving videos from websites on a smartphone.",
+    "icon": "square-play",
+    "color": "text-emerald-400",
+    "bgColor": "bg-emerald-400/10",
     "updatedAt": "20 Марта 2026",
     "updatedAt_en": "March 20, 2026",
-    "downloadUrl": "extensions/SaveImageAsExt.crx",
-    "tags": ["Медиа", "Картинки"],
-    "tags_en": ["Media", "Image"]
-  },
-
-  {
-    "id": "SaveImageAsExt",
-    "name": "Save Image as",
-    "version": "1.0",
-    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
-    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
-    "icon": "image-down",
-    "color": "text-blue-400",
-    "bgColor": "bg-blue-400/10",
-    "updatedAt": "20 Марта 2026",
-    "updatedAt_en": "March 20, 2026",
-    "downloadUrl": "extensions/SaveImageAsExt.crx",
-    "tags": ["Медиа", "Картинки"],
-    "tags_en": ["Media", "Image"]
+    "downloadUrl": "extensions/SaveVideoAsMob.crx",
+    "tags": ["Медиа", "Видео"],
+    "tags_en": ["Media", "Video"]
   }
 ]
