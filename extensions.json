@@ -3,24 +3,63 @@
     "id": "SaveImageAsExt",
     "name": "Save Image as",
     "version": "1.0",
-    "description": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
+    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
+    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
     "icon": "image-down",
     "color": "text-blue-400",
     "bgColor": "bg-blue-400/10",
-    "updatedAt": "20 March 2026",
-    "downloadUrl": "/extensions/SaveImageAsExt.crx",
-    "tags": ["Media", "Image"]
+    "updatedAt": "20 Марта 2026",
+    "updatedAt_en": "March 20, 2026",
+    "downloadUrl": "extensions/SaveImageAsExt.crx",
+    "tags": ["Медиа", "Картинки"],
+    "tags_en": ["Media", "Image"]
   },
+  
   {
-    "id": "dark-theme",
-    "name": "Dark Theme Pro",
-    "version": "2.0.1",
-    "description": "Принудительно включает качественную темную тему на любых сайтах, защищая ваши глаза ночью.",
-    "icon": "moon",
-    "color": "text-purple-400",
-    "bgColor": "bg-purple-400/10",
-    "updatedAt": "10 Марта 2026",
-    "downloadUrl": "extensions/dark-theme/extension.crx",
-    "tags": ["Дизайн", "Утилиты"]
+    "id": "SaveImageAsExt",
+    "name": "Save Image as",
+    "version": "1.0",
+    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
+    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
+    "icon": "image-down",
+    "color": "text-blue-400",
+    "bgColor": "bg-blue-400/10",
+    "updatedAt": "20 Марта 2026",
+    "updatedAt_en": "March 20, 2026",
+    "downloadUrl": "extensions/SaveImageAsExt.crx",
+    "tags": ["Медиа", "Картинки"],
+    "tags_en": ["Media", "Image"]
+  },
+
+  {
+    "id": "SaveImageAsExt",
+    "name": "Save Image as",
+    "version": "1.0",
+    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
+    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
+    "icon": "image-down",
+    "color": "text-blue-400",
+    "bgColor": "bg-blue-400/10",
+    "updatedAt": "20 Марта 2026",
+    "updatedAt_en": "March 20, 2026",
+    "downloadUrl": "extensions/SaveImageAsExt.crx",
+    "tags": ["Медиа", "Картинки"],
+    "tags_en": ["Media", "Image"]
+  },
+
+  {
+    "id": "SaveImageAsExt",
+    "name": "Save Image as",
+    "version": "1.0",
+    "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
+    "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
+    "icon": "image-down",
+    "color": "text-blue-400",
+    "bgColor": "bg-blue-400/10",
+    "updatedAt": "20 Марта 2026",
+    "updatedAt_en": "March 20, 2026",
+    "downloadUrl": "extensions/SaveImageAsExt.crx",
+    "tags": ["Медиа", "Картинки"],
+    "tags_en": ["Media", "Image"]
   }
 ]

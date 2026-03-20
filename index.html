@@ -160,7 +160,8 @@
                 footer_rights: "Все права защищены.",
                 version: "Версия",
                 updated: "Обн:",
-                download: "Скачать .crx"
+                download: "Скачать .crx",
+                downloading: "Загрузка..."
             },
             en: {
                 nav_github: "Our GitHub",
@@ -179,7 +180,8 @@
                 footer_rights: "All rights reserved.",
                 version: "Version",
                 updated: "Upd:",
-                download: "Download .crx"
+                download: "Download .crx",
+                downloading: "Downloading..."
             }
         };
 
@@ -278,10 +280,10 @@
                     
                     <div class="mt-auto pt-4 border-t border-gray-800 flex items-center justify-between relative z-10">
                         <span class="text-xs text-gray-500">${t_updated} ${updatedAt}</span>
-                        <a href="${ext.downloadUrl}" download class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-blue-900/20">
+                        <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-blue-900/20">
                             <i data-lucide="download" class="w-4 h-4"></i>
-                            ${t_download}
-                        </a>
+                            <span>${t_download}</span>
+                        </button>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -289,6 +291,49 @@
 
             lucide.createIcons();
         }
+
+        // Функция принудительного скачивания (обход блокировки Chrome на .crx)
+        window.forceDownload = async function(event, url) {
+            event.preventDefault();
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            const t_downloading = translations[currentLang].downloading;
+            
+            // Включаем анимацию загрузки на кнопке
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>${t_downloading}</span>`;
+            lucide.createIcons();
+            btn.style.pointerEvents = 'none';
+
+            try {
+                // Скачиваем файл как "сырые" данные (blob)
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Сетевая ошибка при скачивании');
+                
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                
+                // Создаем невидимую ссылку и кликаем по ней
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = blobUrl;
+                a.download = url.split('/').pop(); // Достаем имя файла из ссылки
+                document.body.appendChild(a);
+                a.click();
+                
+                // Очищаем память
+                window.URL.revokeObjectURL(blobUrl);
+                a.remove();
+            } catch (error) {
+                console.error('Ошибка скачивания:', error);
+                // Если fetch не сработал, пытаемся открыть как обычно в новой вкладке
+                window.open(url, '_blank');
+            } finally {
+                // Возвращаем кнопку в нормальное состояние
+                btn.innerHTML = originalText;
+                lucide.createIcons();
+                btn.style.pointerEvents = 'auto';
+            }
+        };
 
         async function loadExtensions() {
             try {
