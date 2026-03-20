@@ -2,25 +2,43 @@
 <gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
 
   <!-- =================================================== -->
-  <!-- Блок для первого расширения (например, VK Audio Saver) -->
+  <!-- Блок для 1 расширения -->
   <!-- =================================================== -->
-  <app appid="ТУТ_ID_РАСШИРЕНИЯ_1">
+  <app appid="pgfanclceljfijjchkoihdddihlmkaec">
     <updatecheck 
-        codebase="https://ВАШ_ЛОГИН.github.io/ВАШ_РЕПОЗИТОРИЙ/extensions/vk-audio/extension.crx" 
-        version="1.2.0" 
+        codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SaveImageAsExt.crx" 
+        version="1.0" 
     />
   </app>
 
   <!-- =================================================== -->
-  <!-- Блок для второго расширения (например, Dark Theme Pro) -->
+  <!-- Блок для 2 расширения -->
   <!-- =================================================== -->
-  <app appid="ТУТ_ID_РАСШИРЕНИЯ_2">
+  <app appid="ikbffnibacodglkenjiemnannnbogiod">
     <updatecheck 
-        codebase="https://ВАШ_ЛОГИН.github.io/ВАШ_РЕПОЗИТОРИЙ/extensions/dark-theme/extension.crx" 
-        version="2.0.1" 
+        codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SaveVideoAs.crx" 
+        version="1.0" 
     />
   </app>
 
-  <!-- Если добавляете третье расширение, просто скопируйте блок <app>...</app> и вставьте ниже -->
+  <!-- =================================================== -->
+  <!-- Блок для 3 расширения -->
+  <!-- =================================================== -->
+  <app appid="iegekbohmmhmcablbjmjgddibjlkbggg">
+    <updatecheck 
+        codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SaveImageAsExtMob.crx" 
+        version="1.0" 
+    />
+  </app>
+
+  <!-- =================================================== -->
+  <!-- Блок для 4 расширения -->
+  <!-- =================================================== -->
+  <app appid="lkomgflhmckibhmpabaedfoclihenmjn">
+    <updatecheck 
+        codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SaveVideoAsMob.crx" 
+        version="1.0" 
+    />
+  </app>
 
 </gupdate>
