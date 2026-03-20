@@ -20,7 +20,7 @@
     "id": "SaveVideoAs",
     "name": "Скачай видео",
     "name_en": "Download video",
-    "version": "1.0",
+    "version": "2.0",
     "description": "Добавляет кнопку и пункт в контекстное меню для сохранения видео с сайтов.",
     "description_en": "Adds a button and item to the context menu for saving videos from sites.",
     "icon": "monitor-play",
@@ -34,7 +34,7 @@
   },
 
   {
-    "id": "SaveImageAsExt",
+    "id": "SaveImageAsExtMob",
     "name": "Сохранить картинку как...",
     "name_en": "Save Image as...",
     "platform": "mobile",
@@ -52,7 +52,7 @@
   },
 
   {
-    "id": "SaveImageAsExt",
+    "id": "SaveVideoAsMob",
     "name": "Скачай видео на смартфоне",
     "name_en": "Download videos on your smartphone",
     "platform": "mobile",
