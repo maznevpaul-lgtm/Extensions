@@ -8,7 +8,7 @@
     "color": "text-blue-400",
     "bgColor": "bg-blue-400/10",
     "updatedAt": "20 March 2026",
-    "downloadUrl": "extensions/SaveImageAsExt.crx",
+    "downloadUrl": "/extensions/SaveImageAsExt.crx",
     "tags": ["Media", "Image"]
   },
   {
