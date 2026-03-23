@@ -3,7 +3,7 @@
     "id": "SaveImageAsExt",
     "name": "Сохранить картинку как...",
     "name_en": "Save Image as...",
-    "version": "1.0",
+    "version": "1.1",
     "description": "Добавляет в контекстное меню кнопки и пункт для сохранения любого изображения. (WebP, AVIF) в JPG/PNG.",
     "description_en": "Adds buttons and an item to the context menu for saving any image (WebP, AVIF) in JPG/PNG.",
     "icon": "image-down",
