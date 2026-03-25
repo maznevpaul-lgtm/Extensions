@@ -7,7 +7,7 @@
   <app appid="pgfanclceljfijjchkoihdddihlmkaec">
     <updatecheck 
         codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SaveImageAsExt.crx" 
-        version="1.1" 
+        version="1.1.1" 
     />
   </app>
 
@@ -27,7 +27,7 @@
   <app appid="iegekbohmmhmcablbjmjgddibjlkbggg">
     <updatecheck 
         codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SaveImageAsExtMob.crx" 
-        version="1.0" 
+        version="1.1.1" 
     />
   </app>
 
