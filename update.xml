@@ -47,7 +47,7 @@
   <app appid="bjgjeegdbhlgnopeamnbolkmlhalkdmf">
     <updatecheck 
         codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/StyleInjector.crx" 
-        version="1.4" 
+        version="1.5" 
     />
   </app>
 
