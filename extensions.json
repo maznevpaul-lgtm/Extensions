@@ -12,6 +12,7 @@
     "updatedAt": "25 Марта 2026",
     "updatedAt_en": "March 25, 2026",
     "downloadUrl": "extensions/SaveImageAsExt.crx",
+    "downloadZipUrl": "extensions/SaveImageAsExt.zip",
     "tags": ["Медиа", "Картинки"],
     "tags_en": ["Media", "Image"]
   },
@@ -29,6 +30,7 @@
     "updatedAt": "20 Марта 2026",
     "updatedAt_en": "March 20, 2026",
     "downloadUrl": "extensions/SaveVideoAs.crx",
+    "downloadZipUrl": "extensions/SaveVideoAs.zip",
     "tags": ["Медиа", "Видео"],
     "tags_en": ["Media", "Video"]
   },
@@ -46,6 +48,7 @@
     "updatedAt": "02 Апреля 2026",
     "updatedAt_en": "April 02, 2026",
     "downloadUrl": "extensions/StyleInjector.crx",
+    "downloadZipUrl": "extensions/StyleInjector.zip",
     "tags": ["Медиа", "Сайт"],
     "tags_en": ["Media", "Website"]
   },

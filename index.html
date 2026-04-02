@@ -114,6 +114,53 @@
                             </ul>
                         </div>
                     </div>
+
+                    <!-- НОВЫЙ БЛОК: Скрипты для белого списка -->
+                    <div class="mt-5 p-4 bg-red-900/10 rounded-xl border border-red-900/50 shadow-inner">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="shield-alert" class="w-6 h-6 text-red-400 shrink-0 mt-0.5"></i>
+                            <div class="w-full">
+                                <h4 class="font-bold text-red-300 mb-2" data-i18n="inst_whitelist_title">Браузер отключает расширение после установки?</h4>
+                                <p class="text-sm text-red-200/80 mb-3 leading-relaxed" data-i18n="inst_whitelist_desc">Современные браузеры (особенно Chrome и Edge) могут автоматически отключать расширения не из официального магазина в целях безопасности. Чтобы браузер доверял вашему плагину, добавьте его в "Белый список" (Allowlist).</p>
+                                
+                                <div class="text-sm text-yellow-300/90 mb-4 bg-gray-900/50 p-4 rounded-xl border border-gray-700/50" data-i18n="inst_ext_id_note">
+                                    💡 <strong>Как узнать ID:</strong> Найдите наше расширение (например, Визуальный Инжектор CSS) на странице <code>chrome://extensions/</code> и скопируйте его ID (это длинная строка из 32 букв, например: <code>abcdefghijklmnopqrstuvwxyz123456</code>).<br><br>
+                                    <strong>Как пользоваться скриптом:</strong><br>
+                                    <ul class='space-y-1.5 mt-1 ml-1 text-yellow-200/90'>
+                                        <li>1. Появляется запрос: <em>Введите ID расширения #1:</em> — вставляете первый ID, жмёте Enter. Скрипт пишет <em>[OK] Расширение добавлено!</em></li>
+                                        <li>2. Сразу появляется: <em>Введите ID расширения #2:</em> — вставляете второй ID, жмёте Enter.</li>
+                                        <li>3. Когда запросит следующий ID, а вам больше ничего не нужно добавлять — <strong>просто ничего не пишите и нажмите Enter в пустой строке.</strong></li>
+                                        <li>4. <strong class='text-red-300'>Обязательно перезапустите браузер</strong> (закройте все окна), чтобы настройки применились.</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Windows -->
+                                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                        <div class="flex flex-col gap-3">
+                                            <a href="scripts/chrome_allow_ext.bat" download class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium rounded-lg transition-colors border border-gray-600 shadow-sm">
+                                                <i data-lucide="download" class="w-4 h-4"></i>
+                                                <span data-i18n="inst_win_btn">Скачать скрипт .bat (Windows)</span>
+                                            </a>
+                                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n="inst_win_instr">Нажмите на скачанный файл правой кнопкой мыши ➔ <b>Запуск от имени администратора</b>. Вставьте скопированный ID расширения в консоль.</p>
+                                        </div>
+                                    </div>
+                                    <!-- Mac -->
+                                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                        <div class="flex flex-col gap-3">
+                                            <a href="scripts/mac_allow_ext.sh" download class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium rounded-lg transition-colors border border-gray-600 shadow-sm">
+                                                <i data-lucide="download" class="w-4 h-4"></i>
+                                                <span data-i18n="inst_mac_btn">Скачать скрипт .sh (Mac)</span>
+                                            </a>
+                                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n="inst_mac_instr">В черном окне <b>Терминала</b> напечатайте слово <code>bash</code> и поставьте пробел (получится: <code>bash </code>). Затем перетащите скачанный файл прямо в окно терминала и нажмите Enter.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Конец блока скриптов -->
+
                 </div>
             </div>
 
@@ -193,6 +240,16 @@
                 inst_mobile_kiwi: "<strong>Kiwi Browser</strong> — позволяет устанавливать почти любые расширения из Chrome Web Store.",
                 inst_mobile_yandex: "<strong>Yandex Browser</strong> — поддерживает часть расширений для Chrome и Opera.",
                 inst_mobile_lemur: "<strong>Lemur Browser</strong> — специализированный браузер с упором на поддержку расширений.",
+                
+                // Переводы для скриптов
+                inst_whitelist_title: "Браузер отключает расширение после установки?",
+                inst_whitelist_desc: "Современные браузеры (особенно Chrome и Edge) могут автоматически отключать расширения не из официального магазина в целях безопасности. Чтобы браузер доверял вашему плагину, добавьте его в \"Белый список\" (Allowlist).",
+                inst_ext_id_note: "💡 <strong>Как узнать ID:</strong> Найдите наше расширение (например, Визуальный Инжектор CSS) на странице <code>chrome://extensions/</code> и скопируйте его ID (это длинная строка из 32 букв, например: <code>abcdefghijklmnopqrstuvwxyz123456</code>).<br><br><strong>Как пользоваться скриптом:</strong><br><ul class='space-y-1.5 mt-1 ml-1 text-yellow-200/90'><li>1. Появляется запрос: <em>Введите ID расширения #1:</em> — вставляете первый ID, жмёте Enter. Скрипт пишет <em>[OK] Расширение добавлено!</em></li><li>2. Сразу появляется: <em>Введите ID расширения #2:</em> — вставляете второй ID, жмёте Enter.</li><li>3. Когда запросит следующий ID, а вам больше ничего не нужно добавлять — <strong>просто ничего не пишите и нажмите Enter в пустой строке.</strong></li><li>4. <strong class='text-red-300'>Обязательно перезапустите браузер</strong> (закройте все окна), чтобы настройки применились.</li></ul>",
+                inst_win_btn: "Скачать скрипт .bat (Windows)",
+                inst_mac_btn: "Скачать скрипт .sh (Mac)",
+                inst_win_instr: "Нажмите на скачанный файл правой кнопкой мыши ➔ <b>Запуск от имени администратора</b>. Вставьте скопированный ID расширения в консоль.",
+                inst_mac_instr: "В черном окне <b>Терминала</b> напечатайте слово <code>bash</code> и поставьте пробел (получится: <code>bash </code>). Затем перетащите скачанный файл прямо в окно терминала и нажмите Enter.",
+                
                 desktop_title: "Расширения для ПК",
                 mobile_title: "Мобильные расширения",
                 no_results: "Расширения не найдены",
@@ -222,6 +279,16 @@
                 inst_mobile_kiwi: "<strong>Kiwi Browser</strong> — allows installing almost any extension from the Chrome Web Store.",
                 inst_mobile_yandex: "<strong>Yandex Browser</strong> — supports some extensions for Chrome and Opera.",
                 inst_mobile_lemur: "<strong>Lemur Browser</strong> — a specialized browser focused on extension support.",
+                
+                // Переводы для скриптов (English)
+                inst_whitelist_title: "Browser disabling the extension?",
+                inst_whitelist_desc: "Modern browsers (especially Chrome and Edge) may automatically disable extensions not from the official store for security reasons. To make the browser trust your plugin, add it to the Allowlist.",
+                inst_ext_id_note: "💡 <strong>How to find the ID:</strong> Find our extension (e.g., Visual CSS Injector) on the <code>chrome://extensions/</code> page and copy its ID (a long string of 32 letters, like: <code>abcdefghijklmnopqrstuvwxyz123456</code>).<br><br><strong>How to use the script:</strong><br><ul class='space-y-1.5 mt-1 ml-1 text-yellow-200/90'><li>1. The prompt appears: <em>Enter extension ID #1:</em> — paste the first ID, press Enter. The script says <em>[OK] Extension added!</em></li><li>2. Next prompt: <em>Enter extension ID #2:</em> — paste the second ID, press Enter.</li><li>3. When it asks for the next ID and you have no more to add — <strong>just leave it blank and press Enter.</strong></li><li>4. <strong class='text-red-300'>Make sure to restart your browser</strong> (close all windows) for the settings to apply.</li></ul>",
+                inst_win_btn: "Download .bat script (Windows)",
+                inst_mac_btn: "Download .sh script (Mac)",
+                inst_win_instr: "Right-click the downloaded file ➔ <b>Run as administrator</b>. Paste the copied extension ID into the console.",
+                inst_mac_instr: "Open a black <b>Terminal</b> window, type the word <code>bash</code> and add a space (like this: <code>bash </code>). Then drag the downloaded file directly into the terminal window and press Enter.",
+                
                 desktop_title: "Desktop Extensions",
                 mobile_title: "Mobile Extensions",
                 no_results: "No extensions found",
@@ -296,6 +363,13 @@
             const titleHover = isMobile ? 'group-hover:text-emerald-400' : 'group-hover:text-blue-400';
             const btnColor = isMobile ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/20' : 'bg-blue-600 hover:bg-blue-500 shadow-blue-900/20';
 
+            // Опциональная кнопка ZIP, если указан URL
+            const zipButton = ext.downloadZipUrl ? `
+                <a href="${ext.downloadZipUrl}" download class="inline-flex items-center justify-center w-[36px] h-[36px] bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white rounded-lg transition-colors border border-gray-700 shadow-sm shrink-0" title="ZIP">
+                    <i data-lucide="file-archive" class="w-4 h-4"></i>
+                </a>
+            ` : '';
+
             const card = document.createElement('div');
             // Добавлена ширина (w-full, calc) и макс. ширина, чтобы карточки были одинаковыми и центрировались
             card.className = `w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-[400px] bg-gray-850 rounded-2xl p-6 border border-gray-800 transition-all hover:shadow-lg hover:-translate-y-1 flex flex-col group relative overflow-hidden ${hoverBorder}`;
@@ -325,10 +399,13 @@
                 
                 <div class="mt-auto pt-4 border-t border-gray-800 flex items-center justify-between relative z-10">
                     <span class="text-xs text-gray-500">${t_updated} ${updatedAt}</span>
-                    <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="inline-flex items-center gap-2 px-4 py-2 ${btnColor} text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
-                        <i data-lucide="download" class="w-4 h-4"></i>
-                        <span>${t_download}</span>
-                    </button>
+                    <div class="flex items-center gap-2">
+                        ${zipButton}
+                        <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="inline-flex items-center gap-2 px-4 py-2 ${btnColor} text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            <span>${t_download}</span>
+                        </button>
+                    </div>
                 </div>
             `;
             return card;
@@ -435,12 +512,14 @@
                 applyTranslations();
             } catch (error) {
                 console.error("Ошибка загрузки:", error);
-                grid.classList.remove('hidden');
+                const grid = document.getElementById('desktopGrid'); // fallback message container
+                document.getElementById('noResults').classList.add('hidden');
                 grid.innerHTML = `
-                    <div class="col-span-full text-center py-8 text-red-400 bg-red-900/10 border border-red-800/50 rounded-xl">
+                    <div class="col-span-full text-center py-8 text-red-400 bg-red-900/10 border border-red-800/50 rounded-xl w-full">
                         <p class="font-medium mb-2">Не удалось загрузить список расширений.</p>
                         <p class="text-sm opacity-80">Убедитесь, что файл <code>extensions.json</code> существует рядом с <code>index.html</code>.</p>
                     </div>`;
+                document.getElementById('desktopSection').classList.remove('hidden');
             }
         }
 
