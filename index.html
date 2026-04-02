@@ -258,6 +258,7 @@
                 version: "Версия",
                 updated: "Обн:",
                 download: "Скачать .crx",
+                download_zip: "Скачать .zip",
                 downloading: "Загрузка..."
             },
             en: {
@@ -297,6 +298,7 @@
                 version: "Version",
                 updated: "Upd:",
                 download: "Download .crx",
+                download_zip: "Download .zip",
                 downloading: "Downloading..."
             }
         };
@@ -346,7 +348,8 @@
         function createCardElement(ext, platform) {
             const t_version = translations[currentLang].version;
             const t_updated = translations[currentLang].updated;
-            const t_download = translations[currentLang].download;
+            const t_download_crx = translations[currentLang].download;
+            const t_download_zip = translations[currentLang].download_zip;
 
             const name = (currentLang === 'en' && ext.name_en) ? ext.name_en : ext.name;
             const description = (currentLang === 'en' && ext.description_en) ? ext.description_en : ext.description;
@@ -363,10 +366,11 @@
             const titleHover = isMobile ? 'group-hover:text-emerald-400' : 'group-hover:text-blue-400';
             const btnColor = isMobile ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/20' : 'bg-blue-600 hover:bg-blue-500 shadow-blue-900/20';
 
-            // Опциональная кнопка ZIP, если указан URL
+            // Полноценная кнопка ZIP (серого цвета, чтобы отличаться от CRX), если указан URL
             const zipButton = ext.downloadZipUrl ? `
-                <a href="${ext.downloadZipUrl}" download class="inline-flex items-center justify-center w-[36px] h-[36px] bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white rounded-lg transition-colors border border-gray-700 shadow-sm shrink-0" title="ZIP">
-                    <i data-lucide="file-archive" class="w-4 h-4"></i>
+                <a href="${ext.downloadZipUrl}" download class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 border border-gray-600 text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>${t_download_zip}</span>
                 </a>
             ` : '';
 
@@ -397,13 +401,13 @@
                     ${tagsHtml}
                 </div>
                 
-                <div class="mt-auto pt-4 border-t border-gray-800 flex items-center justify-between relative z-10">
+                <div class="mt-auto pt-4 border-t border-gray-800 flex flex-col xl:flex-row xl:items-center justify-between gap-3 relative z-10">
                     <span class="text-xs text-gray-500">${t_updated} ${updatedAt}</span>
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-stretch xl:items-center gap-2">
                         ${zipButton}
-                        <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="inline-flex items-center gap-2 px-4 py-2 ${btnColor} text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
+                        <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 ${btnColor} text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
                             <i data-lucide="download" class="w-4 h-4"></i>
-                            <span>${t_download}</span>
+                            <span>${t_download_crx}</span>
                         </button>
                     </div>
                 </div>
@@ -489,7 +493,7 @@
                 const errorText = currentLang === 'ru' ? 'Файл не найден' : 'File not found';
                 btn.innerHTML = `<i data-lucide="x-circle" class="w-4 h-4 text-white"></i><span>${errorText}</span>`;
                 // Ставим красные стили для ошибки
-                btn.className = "inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-red-900/20";
+                btn.className = "flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-red-900/20";
                 lucide.createIcons();
                 
                 // Возвращаем как было через 3 секунды
