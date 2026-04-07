@@ -54,6 +54,24 @@
   },
 
   {
+    "id": "TextSaverExt",
+    "name": "Текстовый спасатель",
+    "name_en": "Text Rescuer",
+    "version": "1.1",
+    "description": "Автосохранение текста, быстрые шаблоны, умный буфер обмена и Дзен-режим для любых сайтов.",
+    "description_en": "Autosave text, quick templates, smart clipboard and Zen mode for any website.",
+    "icon": "layout-template",
+    "color": "text-blue-400",
+    "bgColor": "bg-blue-400/10",
+    "updatedAt": "07 Апреля 2026",
+    "updatedAt_en": "April 07, 2026",
+    "downloadUrl": "extensions/TextSaverExt.crx",
+    "downloadZipUrl": "extensions/TextSaverExt.zip",
+    "tags": ["Текст", "Сайт", "Буфер"],
+    "tags_en": ["Text", "Website", "Buffer"]
+  },
+
+  {
     "id": "SaveImageAsExtMob",
     "name": "Сохранить картинку как...",
     "name_en": "Save Image as...",
