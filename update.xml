@@ -7,7 +7,7 @@
   <app appid="pgfanclceljfijjchkoihdddihlmkaec">
     <updatecheck 
         codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SaveImageAsExt.crx" 
-        version="1.3" 
+        version="1.3.1" 
     />
   </app>
 
