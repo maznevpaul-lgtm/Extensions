@@ -61,4 +61,14 @@
     />
   </app>
 
+  <!-- =================================================== -->
+  <!-- Блок для 7 расширения -->
+  <!-- =================================================== -->
+  <app appid="hpmldkbhcihbifmcelpfjpdcoblgkgml">
+    <updatecheck 
+        codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/LanguageImmersion.crx" 
+        version="3.3" 
+    />
+  </app>
+
 </gupdate>

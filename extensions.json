@@ -72,6 +72,24 @@
   },
 
   {
+    "id": "LanguageImmersion",
+    "name": "Языковое погружение",
+    "name_en": "Language immersion",
+    "version": "3.3",
+    "description": "Заменяет слова на изучаемый язык",
+    "description_en": "Replaces words with the target language",
+    "icon": "languages",
+    "color": "text-blue-400",
+    "bgColor": "bg-blue-400/10",
+    "updatedAt": "09 Апреля 2026",
+    "updatedAt_en": "April 09, 2026",
+    "downloadUrl": "extensions/LanguageImmersion.crx",
+    "downloadZipUrl": "extensions/LanguageImmersion.zip",
+    "tags": ["Текст", "Сайт", "Языки"],
+    "tags_en": ["Text", "Website", "languages"]
+  },
+
+  {
     "id": "SaveImageAsExtMob",
     "name": "Сохранить картинку как...",
     "name_en": "Save Image as...",
