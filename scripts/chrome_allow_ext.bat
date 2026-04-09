@@ -17,7 +17,8 @@ call :ADD_EXT "pgfanclceljfijjchkoihdddihlmkaec"
 call :ADD_EXT "jjdfkffchblmcoalbpnkcdpdhijnddge"
 call :ADD_EXT "bjgjeegdbhlgnopeamnbolkmlhalkdmf"
 call :ADD_EXT "cggiokpifbiimhifgkjeobfoneeofcai"
-echo [OK] Все 4 базовых расширения успешно добавлены!
+call :ADD_EXT "hpmldkbhcihbifmcelpfjpdcoblgkgml"
+echo [OK] Все 5 базовых расширения успешно добавлены!
 echo.
 
 echo Инструкция: Если хотите добавить еще расширения, вставляйте ID по одному и нажимайте Enter.
