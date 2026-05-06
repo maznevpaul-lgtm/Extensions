@@ -57,7 +57,7 @@
     "id": "TextSaverExt",
     "name": "Текстовый спасатель",
     "name_en": "Text Rescuer",
-    "version": "1.1",
+    "version": "1.2",
     "description": "Автосохранение текста, быстрые шаблоны, умный буфер обмена и Дзен-режим для любых сайтов.",
     "description_en": "Autosave text, quick templates, smart clipboard and Zen mode for any website.",
     "icon": "clipboard-type",
