@@ -71,4 +71,14 @@
     />
   </app>
 
+  <!-- =================================================== -->
+  <!-- Блок для 8 расширения -->
+  <!-- =================================================== -->
+  <app appid="momgccnahgepogdgppifiknmhhllciih">
+    <updatecheck 
+        codebase="https://maznevpaul-lgtm.github.io/Extensions/extensions/SmartTypographer.crx" 
+        version="1.0" 
+    />
+  </app>
+
 </gupdate>

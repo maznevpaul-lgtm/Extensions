@@ -89,6 +89,24 @@
     "tags_en": ["Text", "Website", "languages"]
   },
 
+{
+    "id": "SmartTypographer",
+    "name": "Умный типограф",
+    "name_en": "Smart Typographer",
+    "version": "1.0",
+    "description": "Умный типограф с инструментом выбора полей и форматирования текста.",
+    "description_en": "Smart typographer with a picker for selecting fields and formatting text.",
+    "icon": "scan-text",
+    "color": "text-blue-400",
+    "bgColor": "bg-blue-400/10",
+    "updatedAt": "07 Мая 2026",
+    "updatedAt_en": "May 07, 2026",
+    "downloadUrl": "extensions/SmartTypographer.crx",
+    "downloadZipUrl": "extensions/SmartTypographer.zip",
+    "tags": ["Текст", "Сайт"],
+    "tags_en": ["Text", "Website"]
+  },
+
   {
     "id": "SaveImageAsExtMob",
     "name": "Сохранить картинку как...",
