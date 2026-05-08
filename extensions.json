@@ -93,7 +93,7 @@
     "id": "SmartTypographer",
     "name": "Умный типограф",
     "name_en": "Smart Typographer",
-    "version": "1.0",
+    "version": "1.1",
     "description": "Умный типограф с инструментом выбора полей и форматирования текста.",
     "description_en": "Smart typographer with a picker for selecting fields and formatting text.",
     "icon": "scan-text",
