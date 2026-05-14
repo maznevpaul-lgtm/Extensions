@@ -4,95 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наши Расширения для Браузера</title>
-    <!-- Подключаем Tailwind CSS для стилей -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Подключаем Lucide Icons для иконок -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Настройки Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gray: {
-                            850: '#1f2937',
-                            900: '#111827',
-                            950: '#030712',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+    
     <style>
-        html { scroll-behavior: smooth; }
+        /* ==========================================
+           ВСТРОЕННЫЙ CSS (БЕЗ ВНЕШНИХ ЗАВИСИМОСТЕЙ)
+           ========================================== */
+        :root {
+            --bg-main: #030712;
+            --bg-nav: rgba(17, 24, 39, 0.8);
+            --bg-card: #1f2937;
+            --border: #374151;
+            --border-hover: #4b5563;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            
+            --blue-500: #2563eb;
+            --blue-hover: #1d4ed8;
+            --green-500: #059669;
+            --green-hover: #047857;
+            --gray-700: #374151;
+            --gray-hover: #4b5563;
+            --red-500: #dc2626;
+            --red-hover: #b91c1c;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; line-height: 1.5; }
+        
+        /* Скроллбар */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #111827; }
         ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        /* Утилиты иконок (чтобы работал extensions.json) */
+        .text-blue-400 { color: #60a5fa; } .bg-blue-400\/10 { background-color: rgba(96, 165, 250, 0.1); }
+        .text-purple-400 { color: #c084fc; } .bg-purple-400\/10 { background-color: rgba(192, 132, 252, 0.1); }
+        .text-red-400 { color: #f87171; } .bg-red-400\/10 { background-color: rgba(248, 113, 113, 0.1); }
+        .text-emerald-400 { color: #34d399; } .bg-emerald-400\/10 { background-color: rgba(52, 211, 153, 0.1); }
+        .text-gray-300 { color: #d1d5db; } .bg-gray-600\/20 { background-color: rgba(75, 85, 99, 0.2); }
+
+        /* Базовые компоненты */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .hidden { display: none !important; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 8px; } .gap-3 { gap: 12px; } .gap-4 { gap: 16px; }
+
+        /* Навигация */
+        .navbar { border-bottom: 1px solid var(--border); background: var(--bg-nav); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 50; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .logo-box { background: var(--blue-500); padding: 8px; border-radius: 8px; display: flex; }
+        .logo-text { font-weight: bold; font-size: 1.25rem; }
+        .lang-btn { background: rgba(30, 58, 138, 0.3); border: 1px solid rgba(30, 58, 138, 0.5); color: #60a5fa; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; }
+        .github-link { color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+        .github-link:hover { color: white; }
+
+        /* Главный блок (Hero) */
+        .hero { text-align: center; padding: 80px 0 60px; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 24px; background: linear-gradient(to right, #60a5fa, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.2; }
+        .hero p { font-size: 1.125rem; color: var(--text-muted); margin-bottom: 32px; }
+        
+        /* Поиск */
+        .search-box { position: relative; max-width: 600px; margin: 0 auto; }
+        .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .search-input { width: 100%; padding: 16px 16px 16px 48px; border-radius: 12px; background: #1f2937; border: 1px solid var(--border); color: white; font-size: 16px; outline: none; transition: border-color 0.2s; }
+        .search-input:focus { border-color: var(--blue-500); }
+
+        /* Инструкция */
+        .instruction-panel { background: rgba(30, 58, 138, 0.2); border: 1px solid rgba(30, 58, 138, 0.5); border-radius: 16px; max-width: 900px; margin: 0 auto 48px; padding: 4px; }
+        .inst-toggle { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 16px; background: transparent; border: none; cursor: pointer; color: #dbeafe; border-radius: 12px; font-size: 16px; text-align: left; transition: background 0.2s; }
+        .inst-toggle:hover { background: rgba(30, 58, 138, 0.3); }
+        .inst-toggle .icon-wrap { background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 8px; border-radius: 8px; display: flex; }
+        .inst-content { padding: 8px 24px 24px; font-size: 14px; color: #bfdbfe; }
+        .inst-content ol { padding-left: 20px; margin: 12px 0; }
+        .inst-content li { margin-bottom: 8px; }
+        .inst-content code { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        
+        .alert-box { background: rgba(30, 58, 138, 0.3); padding: 16px; border-radius: 12px; border: 1px solid rgba(30, 58, 138, 0.5); margin-top: 20px; }
+        .alert-box p { margin-bottom: 8px; }
+        .alert-danger { background: rgba(127, 29, 29, 0.2); border: 1px solid rgba(127, 29, 29, 0.5); margin-top: 20px; }
+
+        /* Сетка расширений */
+        .section-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 48px; }
+        
+        /* Карточка */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; width: 100%; max-width: 400px; flex: 1 1 calc(33.333% - 24px); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); }
+        .card.desktop:hover { border-color: rgba(59, 130, 246, 0.5); }
+        .card.mobile:hover { border-color: rgba(16, 185, 129, 0.5); }
+        
+        .card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+        .card-icon { padding: 12px; border-radius: 12px; display: flex; }
+        .card-title { font-size: 1.125rem; font-weight: bold; color: white; transition: color 0.2s; }
+        .card.desktop:hover .card-title { color: #60a5fa; }
+        .card.mobile:hover .card-title { color: #34d399; }
+        .card-version { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+        
+        .card-desc { font-size: 0.875rem; color: #9ca3af; flex-grow: 1; margin-bottom: 24px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+        .tag { font-size: 0.75rem; background: #111827; color: #d1d5db; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); }
+        
+        .card-footer { border-top: 1px solid var(--border); padding-top: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .card-date { font-size: 0.75rem; color: var(--text-muted); }
+        .actions { display: flex; gap: 8px; flex-grow: 1; justify-content: flex-end; }
+        
+        /* Кнопки */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 8px; font-size: 0.875rem; font-weight: bold; color: white; cursor: pointer; border: none; text-decoration: none; transition: background 0.2s; flex: 1; }
+        .btn-icon { width: 36px; height: 36px; padding: 0; flex: none; border: 1px solid var(--border); background: var(--gray-700); }
+        
+        .btn-blue { background: var(--blue-500); } .btn-blue:hover { background: var(--blue-hover); }
+        .btn-green { background: var(--green-500); } .btn-green:hover { background: var(--green-hover); }
+        .btn-gray { background: var(--gray-700); } .btn-gray:hover { background: var(--gray-hover); }
+        .btn-red { background: var(--red-500) !important; }
+
+        /* Вращение иконки загрузки */
+        .spin { animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Футер */
+        footer { margin-top: auto; background: #111827; border-top: 1px solid var(--border); padding: 32px 0; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+
+        /* Адаптив для карточек */
+        @media (max-width: 768px) {
+            .card { flex: 1 1 100%; max-width: 100%; }
+            .hero h1 { font-size: 2rem; }
+            .navbar .container span.hidden { display: none; }
+        }
     </style>
 </head>
-<body class="bg-gray-950 text-gray-100 min-h-screen font-sans antialiased flex flex-col">
+<body>
 
-    <!-- Навигация -->
-    <nav class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-3">
-                    <div class="bg-blue-600 p-2 rounded-lg">
-                        <i data-lucide="blocks" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="font-bold text-xl tracking-tight">ExtHub</span>
+    <nav class="navbar">
+        <div class="container">
+            <div class="flex items-center gap-3">
+                <div class="logo-box">
+                    <i data-lucide="blocks" style="color: white;"></i>
                 </div>
-                <div class="flex items-center gap-6">
-                    <!-- Кнопка смены языка -->
-                    <button id="langToggle" class="text-blue-400 hover:text-blue-300 font-bold transition-colors text-sm px-2 py-1 rounded bg-blue-900/30 border border-blue-800/50">
-                        EN
-                    </button>
-                    <a href="https://github.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
-                        <i data-lucide="github" class="w-5 h-5"></i>
-                        <span class="hidden sm:inline" data-i18n="nav_github">Наш GitHub</span>
-                    </a>
-                </div>
+                <span class="logo-text">ExtHub</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="langToggle" class="lang-btn">EN</button>
+                <a href="https://github.com/" target="_blank" class="github-link">
+                    <i data-lucide="github" width="20" height="20"></i>
+                    <span class="hidden sm:inline" data-i18n="nav_github">Наш GitHub</span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Главный блок (Hero) -->
-    <main class="flex-grow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h1 data-i18n="hero_title" class="text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                    Полезные расширения для вашего браузера
-                </h1>
-                <p data-i18n="hero_subtitle" class="text-lg text-gray-400 mb-8">
-                    Скачивайте наши кастомные плагины напрямую. Безопасно, быстро и с открытым исходным кодом.
-                </p>
+    <main style="flex-grow: 1;">
+        <div class="container">
+            <div class="hero">
+                <h1 data-i18n="hero_title">Полезные расширения для вашего браузера</h1>
+                <p data-i18n="hero_subtitle">Скачивайте наши кастомные плагины напрямую. Безопасно, быстро и с открытым исходным кодом.</p>
                 
-                <!-- Поиск -->
-                <div class="relative max-w-xl mx-auto">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i data-lucide="search" class="h-5 w-5 text-gray-500"></i>
-                    </div>
-                    <input type="text" id="searchInput" data-i18n="search_placeholder" class="block w-full pl-10 pr-3 py-3 border border-gray-700 rounded-xl leading-5 bg-gray-850 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all" placeholder="Поиск расширений...">
+                <div class="search-box">
+                    <i data-lucide="search" class="search-icon" width="20" height="20"></i>
+                    <input type="text" id="searchInput" data-i18n="search_placeholder" class="search-input" placeholder="Поиск расширений...">
                 </div>
             </div>
 
-            <!-- Инструкция по установке -->
-            <div class="max-w-4xl mx-auto mb-12 bg-blue-900/20 border border-blue-800/50 rounded-2xl p-1">
-                <button id="instructionToggle" class="w-full flex items-center justify-between p-4 text-left focus:outline-none rounded-xl hover:bg-blue-900/30 transition-colors">
+            <div class="instruction-panel">
+                <button id="instructionToggle" class="inst-toggle">
                     <div class="flex items-center gap-3">
-                        <div class="bg-blue-500/20 p-2 rounded-lg text-blue-400">
-                            <i data-lucide="info" class="w-5 h-5"></i>
-                        </div>
-                        <span class="font-medium text-blue-100" data-i18n="inst_title">Как установить и настроить автообновление?</span>
+                        <div class="icon-wrap"><i data-lucide="info" width="20" height="20"></i></div>
+                        <span style="font-weight: 500;" data-i18n="inst_title">Как установить и настроить автообновление?</span>
                     </div>
-                    <i data-lucide="chevron-down" id="instructionIcon" class="w-5 h-5 text-blue-400 transition-transform duration-300"></i>
+                    <i data-lucide="chevron-down" id="instructionIcon" width="20" height="20" style="transition: transform 0.3s;"></i>
                 </button>
-                <div id="instructionContent" class="hidden px-6 pb-6 pt-2 text-sm text-blue-200">
-                    <p class="mb-3 font-medium text-yellow-300" data-i18n="inst_p1">Из-за политики безопасности браузеров прямая установка со сторонних сайтов заблокирована. Требуется ручная установка файла, но обновления будут прилетать автоматически!</p>
-                    <ol class="list-decimal list-inside space-y-2">
+                
+                <div id="instructionContent" class="inst-content hidden">
+                    <p style="color: #fde047; font-weight: 500;" data-i18n="inst_p1">Из-за политики безопасности браузеров прямая установка со сторонних сайтов заблокирована. Требуется ручная установка файла, но обновления будут прилетать автоматически!</p>
+                    <ol>
                         <li data-i18n="inst_li1">Скачайте файл расширения (в формате <code>.crx</code>) по кнопке ниже.</li>
                         <li data-i18n="inst_li2">Откройте новую вкладку в браузере и перейдите по адресу <code>chrome://extensions/</code> (или <code>edge://extensions/</code>).</li>
                         <li data-i18n="inst_li3">В правом верхнем углу обязательно включите <strong>"Режим разработчика"</strong> (Developer mode).</li>
@@ -100,14 +190,14 @@
                         <li data-i18n="inst_li5">Подтвердите установку. Готово! В дальнейшем расширение будет обновляться само, когда автор загрузит новую версию на сайт.</li>
                     </ol>
                     
-                    <div class="mt-5 p-4 bg-blue-900/30 rounded-xl border border-blue-800/50 space-y-3">
-                        <p class="text-blue-300" data-i18n="inst_note1"><strong class="text-blue-200">Для Яндекс Браузера и Opera:</strong> При нажатии на скачивание браузер может сразу начать установку. Сверху появится сообщение — нажмите на него, чтобы перейти в раздел расширений и разрешить установку там.</p>
-                        <p class="text-yellow-400 font-medium" data-i18n="inst_note2">⚠️ Важно: Если вы разархивируете скачанный .crx файл и установите его папкой (как распакованное расширение), автоматические обновления прилетать НЕ БУДУТ!</p>
+                    <div class="alert-box">
+                        <p data-i18n="inst_note1"><strong style="color: #bfdbfe;">Для Яндекс Браузера и Opera:</strong> При нажатии на скачивание браузер может сразу начать установку. Сверху появится сообщение — нажмите на него, чтобы перейти в раздел расширений и разрешить установку там.</p>
+                        <p style="color: #facc15; font-weight: 500;" data-i18n="inst_note2">⚠️ Важно: Если вы разархивируете скачанный .crx файл и установите его папкой, автоматические обновления прилетать НЕ БУДУТ!</p>
                         
-                        <div class="text-emerald-300 border-t border-blue-800/50 pt-3 mt-3">
-                            <strong class="text-emerald-200" data-i18n="inst_mobile_title">О мобильных браузерах:</strong> 
+                        <div style="border-top: 1px solid rgba(30, 58, 138, 0.5); padding-top: 12px; margin-top: 12px; color: #6ee7b7;">
+                            <strong style="color: #a7f3d0;" data-i18n="inst_mobile_title">О мобильных браузерах:</strong> 
                             <span data-i18n="inst_mobile_desc">Не все мобильные браузеры поддерживают расширения. Рекомендуемые варианты:</span>
-                            <ul class="list-disc list-inside mt-2 space-y-1 ml-2 text-sm text-blue-200">
+                            <ul style="margin-top: 8px; margin-left: 20px; color: #bfdbfe;">
                                 <li data-i18n="inst_mobile_kiwi"><strong>Kiwi Browser</strong> — позволяет устанавливать почти любые расширения из Chrome Web Store.</li>
                                 <li data-i18n="inst_mobile_yandex"><strong>Yandex Browser</strong> — поддерживает часть расширений для Chrome и Opera.</li>
                                 <li data-i18n="inst_mobile_lemur"><strong>Lemur Browser</strong> — специализированный браузер с упором на поддержку расширений.</li>
@@ -115,91 +205,73 @@
                         </div>
                     </div>
 
-                    <!-- НОВЫЙ БЛОК: Скрипты для белого списка -->
-                    <div class="mt-5 p-4 bg-red-900/10 rounded-xl border border-red-900/50 shadow-inner">
+                    <div class="alert-box alert-danger">
                         <div class="flex items-start gap-3">
-                            <i data-lucide="shield-alert" class="w-6 h-6 text-red-400 shrink-0 mt-0.5"></i>
-                            <div class="w-full">
-                                <h4 class="font-bold text-red-300 mb-2" data-i18n="inst_whitelist_title">Браузер отключает расширение после установки?</h4>
-                                <p class="text-sm text-red-200/80 mb-3 leading-relaxed" data-i18n="inst_whitelist_desc">Современные браузеры (особенно Chrome и Edge) могут автоматически отключать расширения не из официального магазина в целях безопасности. Чтобы браузер доверял вашему плагину, добавьте его в "Белый список" (Allowlist).</p>
+                            <i data-lucide="shield-alert" style="color: #f87171; flex-shrink: 0;"></i>
+                            <div style="width: 100%;">
+                                <h4 style="font-weight: bold; color: #fca5a5; margin-bottom: 8px;" data-i18n="inst_whitelist_title">Браузер отключает расширение после установки?</h4>
+                                <p style="color: #fecaca; margin-bottom: 12px;" data-i18n="inst_whitelist_desc">Современные браузеры могут автоматически отключать расширения не из официального магазина. Чтобы браузер доверял вашему плагину, добавьте его в "Белый список".</p>
                                 
-                                <div class="text-sm text-yellow-300/90 mb-4 bg-gray-900/50 p-4 rounded-xl border border-gray-700/50" data-i18n="inst_ext_id_note">
+                                <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; color: #fef08a; margin-bottom: 16px;" data-i18n="inst_ext_id_note">
                                     💡 <strong>Обратите внимание:</strong> В эти скрипты <strong>уже внесены ID трёх наших расширений!</strong> Если вам нужны только они, просто запустите скрипт и на первый же запрос нажмите Enter, ничего не вводя.<br><br>
                                     <strong>Как добавить любые другие расширения:</strong> Найдите расширение на странице <code>chrome://extensions/</code> и скопируйте его ID (32 буквы).<br>
-                                    <ul class='space-y-1.5 mt-1 ml-1 text-yellow-200/90'>
-                                        <li>1. Появляется запрос: <em>Введите ID расширения #1:</em> — вставляете скопированный ID, жмёте Enter. Скрипт пишет <em>[OK] Расширение добавлено!</em></li>
+                                    <ul style="margin-left: 20px; margin-top: 8px;">
+                                        <li>1. Появляется запрос: <em>Введите ID расширения #1:</em> — вставляете ID, жмёте Enter.</li>
                                         <li>2. Сразу появляется запрос <em>#2</em> — так можно добавить любое количество ваших расширений.</li>
                                         <li>3. Когда запросит следующий ID, а вам больше ничего не нужно добавлять — <strong>просто ничего не пишите и нажмите Enter в пустой строке.</strong></li>
-                                        <li>4. <strong class='text-red-300'>Обязательно перезапустите браузер</strong> (закройте все окна), чтобы настройки применились.</li>
+                                        <li>4. <strong style="color: #fca5a5;">Обязательно перезапустите браузер</strong> (закройте все окна), чтобы настройки применились.</li>
                                     </ul>
                                 </div>
                                 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <!-- Windows -->
-                                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
-                                        <div class="flex flex-col gap-3">
-                                            <a href="scripts/chrome_allow_ext.bat" download class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium rounded-lg transition-colors border border-gray-600 shadow-sm">
-                                                <i data-lucide="download" class="w-4 h-4"></i>
-                                                <span data-i18n="inst_win_btn">Скачать скрипт .bat (Windows)</span>
-                                            </a>
-                                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n="inst_win_instr">Нажмите на скачанный файл правой кнопкой мыши ➔ <b>Запуск от имени администратора</b>. Вставьте скопированный ID расширения в консоль.</p>
-                                        </div>
+                                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                                    <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; border: 1px solid var(--border);">
+                                        <a href="scripts/chrome_allow_ext.bat" download class="btn btn-gray" style="width: 100%; margin-bottom: 8px;">
+                                            <i data-lucide="download" width="16" height="16"></i>
+                                            <span data-i18n="inst_win_btn">Скачать скрипт .bat (Windows)</span>
+                                        </a>
+                                        <p style="font-size: 12px; color: #9ca3af;" data-i18n="inst_win_instr">Нажмите на файл правой кнопкой мыши ➔ <b>Запуск от имени администратора</b>.</p>
                                     </div>
-                                    <!-- Mac -->
-                                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
-                                        <div class="flex flex-col gap-3">
-                                            <a href="scripts/mac_allow_ext.sh" download class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium rounded-lg transition-colors border border-gray-600 shadow-sm">
-                                                <i data-lucide="download" class="w-4 h-4"></i>
-                                                <span data-i18n="inst_mac_btn">Скачать скрипт .sh (Mac)</span>
-                                            </a>
-                                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n="inst_mac_instr">В черном окне <b>Терминала</b> напечатайте слово <code>bash</code> и поставьте пробел (получится: <code>bash </code>). Затем перетащите скачанный файл прямо в окно терминала и нажмите Enter.</p>
-                                        </div>
+                                    <div style="flex: 1; min-width: 250px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; border: 1px solid var(--border);">
+                                        <a href="scripts/mac_allow_ext.sh" download class="btn btn-gray" style="width: 100%; margin-bottom: 8px;">
+                                            <i data-lucide="download" width="16" height="16"></i>
+                                            <span data-i18n="inst_mac_btn">Скачать скрипт .sh (Mac)</span>
+                                        </a>
+                                        <p style="font-size: 12px; color: #9ca3af;" data-i18n="inst_mac_instr">Откройте <b>Терминал</b>, напишите <code>bash </code>, перетащите файл в окно и нажмите Enter.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Конец блока скриптов -->
-
                 </div>
             </div>
 
-            <!-- Сетки расширений -->
-            <div class="max-w-6xl mx-auto">
-                <!-- Секция ПК -->
-                <div id="desktopSection" class="mb-12 hidden">
-                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 border-b border-gray-800 pb-3">
-                        <i data-lucide="monitor" class="w-6 h-6 text-blue-400"></i>
-                        <span data-i18n="desktop_title">Расширения для ПК</span>
-                    </h2>
-                    <div id="desktopGrid" class="flex flex-wrap justify-center gap-6"></div>
-                </div>
+            <div id="desktopSection" class="hidden">
+                <h2 class="section-title">
+                    <i data-lucide="monitor" style="color: #60a5fa;"></i>
+                    <span data-i18n="desktop_title">Расширения для ПК</span>
+                </h2>
+                <div id="desktopGrid" class="grid"></div>
+            </div>
 
-                <!-- Секция Мобайл -->
-                <div id="mobileSection" class="mb-12 hidden">
-                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 border-b border-gray-800 pb-3">
-                        <i data-lucide="smartphone" class="w-6 h-6 text-emerald-400"></i>
-                        <span data-i18n="mobile_title">Мобильные расширения</span>
-                    </h2>
-                    <div id="mobileGrid" class="flex flex-wrap justify-center gap-6"></div>
-                </div>
+            <div id="mobileSection" class="hidden">
+                <h2 class="section-title">
+                    <i data-lucide="smartphone" style="color: #34d399;"></i>
+                    <span data-i18n="mobile_title">Мобильные расширения</span>
+                </h2>
+                <div id="mobileGrid" class="grid"></div>
             </div>
             
-            <!-- Сообщение если ничего не найдено -->
-            <div id="noResults" class="hidden text-center py-12">
-                <i data-lucide="frown" class="w-16 h-16 text-gray-600 mx-auto mb-4"></i>
-                <h3 class="text-xl font-medium text-gray-400" data-i18n="no_results">Расширения не найдены</h3>
-                <p class="text-gray-500 mt-2" data-i18n="no_results_sub">Попробуйте изменить поисковый запрос</p>
+            <div id="noResults" class="hidden" style="text-align: center; padding: 48px 0;">
+                <i data-lucide="frown" style="width: 64px; height: 64px; color: #4b5563; margin: 0 auto 16px; display: block;"></i>
+                <h3 style="font-size: 1.25rem; color: #9ca3af;" data-i18n="no_results">Расширения не найдены</h3>
+                <p style="color: #6b7280; margin-top: 8px;" data-i18n="no_results_sub">Попробуйте изменить поисковый запрос</p>
             </div>
         </div>
     </main>
 
-    <!-- Футер -->
-    <footer class="border-t border-gray-800 bg-gray-900 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-gray-500 text-sm">
-                &copy; <span id="currentYear"></span> ExtHub Team. <span data-i18n="footer_rights">Все права защищены.</span>
-            </p>
+    <footer>
+        <div class="container">
+            &copy; <span id="currentYear"></span> ExtHub Team. <span data-i18n="footer_rights">Все права защищены.</span>
         </div>
     </footer>
 
@@ -218,7 +290,7 @@
         });
 
         // ==========================================
-        // СИСТЕМА ЛОКАЛИЗАЦИИ (i18n)
+        // СИСТЕМА ЛОКАЛИЗАЦИИ
         // ==========================================
         const translations = {
             ru: {
@@ -233,23 +305,20 @@
                 inst_li3: "В правом верхнем углу обязательно включите <strong>\"Режим разработчика\"</strong> (Developer mode).",
                 inst_li4: "<strong>Перетащите</strong> скачанный файл <code>.crx</code> из папки \"Загрузки\" прямо в окно браузера с открытой страницей расширений.",
                 inst_li5: "Подтвердите установку. Готово! В дальнейшем расширение будет обновляться само, когда автор загрузит новую версию на сайт.",
-                inst_note1: "<strong class=\"text-blue-200\">Для Яндекс Браузера и Opera:</strong> При нажатии на скачивание браузер может сразу начать установку. Сверху появится сообщение — нажмите на него, чтобы перейти в раздел расширений и разрешить установку там.",
-                inst_note2: "⚠️ Важно: Если вы разархивируете скачанный .crx файл и установите его папкой (как распакованное расширение), автоматические обновления прилетать НЕ БУДУТ!",
+                inst_note1: "<strong style=\"color: #bfdbfe;\">Для Яндекс Браузера и Opera:</strong> При нажатии на скачивание браузер может сразу начать установку. Сверху появится сообщение — нажмите на него, чтобы перейти в раздел расширений и разрешить установку там.",
+                inst_note2: "⚠️ Важно: Если вы разархивируете скачанный .crx файл и установите его папкой, автоматические обновления прилетать НЕ БУДУТ!",
                 inst_mobile_title: "О мобильных браузерах:",
                 inst_mobile_desc: "Не все мобильные браузеры поддерживают расширения. Рекомендуемые варианты:",
                 inst_mobile_kiwi: "<strong>Kiwi Browser</strong> — позволяет устанавливать почти любые расширения из Chrome Web Store.",
                 inst_mobile_yandex: "<strong>Yandex Browser</strong> — поддерживает часть расширений для Chrome и Opera.",
                 inst_mobile_lemur: "<strong>Lemur Browser</strong> — специализированный браузер с упором на поддержку расширений.",
-                
-                // Переводы для скриптов
                 inst_whitelist_title: "Браузер отключает расширение после установки?",
-                inst_whitelist_desc: "Современные браузеры (особенно Chrome и Edge) могут автоматически отключать расширения не из официального магазина в целях безопасности. Чтобы браузер доверял вашему плагину, добавьте его в \"Белый список\" (Allowlist).",
-                inst_ext_id_note: "💡 <strong>Обратите внимание:</strong> В эти скрипты <strong>уже внесены ID трёх наших расширений!</strong> Если вам нужны только они, просто запустите скрипт и на первый же запрос нажмите Enter, ничего не вводя.<br><br><strong>Как добавить любые другие расширения:</strong> Найдите расширение на странице <code>chrome://extensions/</code> и скопируйте его ID (32 буквы).<br><ul class='space-y-1.5 mt-1 ml-1 text-yellow-200/90'><li>1. Появляется запрос: <em>Введите ID расширения #1:</em> — вставляете скопированный ID, жмёте Enter. Скрипт пишет <em>[OK] Расширение добавлено!</em></li><li>2. Сразу появляется запрос <em>#2</em> — так можно добавить любое количество ваших расширений.</li><li>3. Когда запросит следующий ID, а вам больше ничего не нужно добавлять — <strong>просто ничего не пишите и нажмите Enter в пустой строке.</strong></li><li>4. <strong class='text-red-300'>Обязательно перезапустите браузер</strong> (закройте все окна), чтобы настройки применились.</li></ul>",
-                inst_win_btn: "Скачать скрипт .bat (Windows)",
-                inst_mac_btn: "Скачать скрипт .sh (Mac)",
-                inst_win_instr: "Нажмите на скачанный файл правой кнопкой мыши ➔ <b>Запуск от имени администратора</b>. Вставьте скопированный ID расширения в консоль.",
-                inst_mac_instr: "В черном окне <b>Терминала</b> напечатайте слово <code>bash</code> и поставьте пробел (получится: <code>bash </code>). Затем перетащите скачанный файл прямо в окно терминала и нажмите Enter.",
-                
+                inst_whitelist_desc: "Современные браузеры могут автоматически отключать расширения не из официального магазина. Чтобы браузер доверял вашему плагину, добавьте его в \"Белый список\".",
+                inst_ext_id_note: "💡 <strong>Обратите внимание:</strong> В эти скрипты <strong>уже внесены ID трёх наших расширений!</strong> Если вам нужны только они, просто запустите скрипт и на первый же запрос нажмите Enter, ничего не вводя.<br><br><strong>Как добавить любые другие расширения:</strong> Найдите расширение на странице <code>chrome://extensions/</code> и скопируйте его ID (32 буквы).<br><ul style='margin-left: 20px; margin-top: 8px;'><li>1. Появляется запрос: <em>Введите ID расширения #1:</em> — вставляете ID, жмёте Enter.</li><li>2. Сразу появляется запрос <em>#2</em> — так можно добавить любое количество ваших расширений.</li><li>3. Когда запросит следующий ID, а вам больше ничего не нужно добавлять — <strong>просто ничего не пишите и нажмите Enter в пустой строке.</strong></li><li>4. <strong style='color: #fca5a5;'>Обязательно перезапустите браузер</strong> (закройте все окна), чтобы настройки применились.</li></ul>",
+                inst_win_btn: "Скачать скрипт .bat",
+                inst_mac_btn: "Скачать скрипт .sh",
+                inst_win_instr: "Нажмите на файл правой кнопкой мыши ➔ <b>Запуск от имени администратора</b>.",
+                inst_mac_instr: "Откройте <b>Терминал</b>, напишите <code>bash </code>, перетащите файл в окно и нажмите Enter.",
                 desktop_title: "Расширения для ПК",
                 mobile_title: "Мобильные расширения",
                 no_results: "Расширения не найдены",
@@ -273,23 +342,20 @@
                 inst_li3: "In the top right corner, make sure to enable <strong>\"Developer mode\"</strong>.",
                 inst_li4: "<strong>Drag and drop</strong> the downloaded <code>.crx</code> file from your Downloads folder directly into the browser window with the extensions page open.",
                 inst_li5: "Confirm the installation. Done! The extension will update automatically when the author uploads a new version to the site.",
-                inst_note1: "<strong class=\"text-blue-200\">For Yandex and Opera users:</strong> When you click download, the browser might immediately start the installation. A message will appear at the top — click it to go to the extensions section and allow the installation there.",
-                inst_note2: "⚠️ Important: If you unzip the downloaded .crx file and install it as a folder (unpacked extension), automatic updates WILL NOT WORK!",
+                inst_note1: "<strong style=\"color: #bfdbfe;\">For Yandex and Opera users:</strong> When you click download, the browser might immediately start the installation. A message will appear at the top — click it to go to the extensions section and allow the installation there.",
+                inst_note2: "⚠️ Important: If you unzip the downloaded .crx file and install it as a folder, automatic updates WILL NOT WORK!",
                 inst_mobile_title: "About mobile browsers:",
                 inst_mobile_desc: "Not all mobile browsers support extensions. Recommended options:",
                 inst_mobile_kiwi: "<strong>Kiwi Browser</strong> — allows installing almost any extension from the Chrome Web Store.",
                 inst_mobile_yandex: "<strong>Yandex Browser</strong> — supports some extensions for Chrome and Opera.",
                 inst_mobile_lemur: "<strong>Lemur Browser</strong> — a specialized browser focused on extension support.",
-                
-                // Переводы для скриптов (English)
                 inst_whitelist_title: "Browser disabling the extension?",
-                inst_whitelist_desc: "Modern browsers (especially Chrome and Edge) may automatically disable extensions not from the official store for security reasons. To make the browser trust your plugin, add it to the Allowlist.",
-                inst_ext_id_note: "💡 <strong>Note:</strong> The IDs of <strong>our 3 main extensions are already included</strong> in these scripts! If you only need them, just run the script and press Enter on the very first prompt without typing anything.<br><br><strong>How to add any other extensions:</strong> Find the extension on the <code>chrome://extensions/</code> page and copy its ID (32 letters).<br><ul class='space-y-1.5 mt-1 ml-1 text-yellow-200/90'><li>1. The prompt appears: <em>Enter extension ID #1:</em> — paste the ID, press Enter. The script says <em>[OK] Extension added!</em></li><li>2. Prompt <em>#2</em> appears immediately — you can add as many extensions as you like this way.</li><li>3. When it asks for the next ID and you have no more to add — <strong>just leave it blank and press Enter.</strong></li><li>4. <strong class='text-red-300'>Make sure to restart your browser</strong> (close all windows) for the settings to apply.</li></ul>",
-                inst_win_btn: "Download .bat script (Windows)",
-                inst_mac_btn: "Download .sh script (Mac)",
-                inst_win_instr: "Right-click the downloaded file ➔ <b>Run as administrator</b>. Paste the copied extension ID into the console.",
-                inst_mac_instr: "Open a black <b>Terminal</b> window, type the word <code>bash</code> and add a space (like this: <code>bash </code>). Then drag the downloaded file directly into the terminal window and press Enter.",
-                
+                inst_whitelist_desc: "Modern browsers may automatically disable extensions not from the official store. To make the browser trust your plugin, add it to the Allowlist.",
+                inst_ext_id_note: "💡 <strong>Note:</strong> The IDs of <strong>our 3 main extensions are already included</strong> in these scripts! If you only need them, just run the script and press Enter on the very first prompt without typing anything.<br><br><strong>How to add any other extensions:</strong> Find the extension on the <code>chrome://extensions/</code> page and copy its ID (32 letters).<br><ul style='margin-left: 20px; margin-top: 8px;'><li>1. The prompt appears: <em>Enter extension ID #1:</em> — paste the ID, press Enter.</li><li>2. Prompt <em>#2</em> appears immediately — you can add as many extensions as you like this way.</li><li>3. When it asks for the next ID and you have no more to add — <strong>just leave it blank and press Enter.</strong></li><li>4. <strong style='color: #fca5a5;'>Make sure to restart your browser</strong> (close all windows) for the settings to apply.</li></ul>",
+                inst_win_btn: "Download .bat script",
+                inst_mac_btn: "Download .sh script",
+                inst_win_instr: "Right-click the file ➔ <b>Run as administrator</b>.",
+                inst_mac_instr: "Open a <b>Terminal</b> window, type <code>bash </code>, drag the file into the terminal and press Enter.",
                 desktop_title: "Desktop Extensions",
                 mobile_title: "Mobile Extensions",
                 no_results: "No extensions found",
@@ -303,33 +369,22 @@
             }
         };
 
-        // Определение языка (из памяти или настроек браузера)
         let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('ru') ? 'ru' : 'en');
         let extensions = [];
 
         function applyTranslations() {
-            // Перевод статического текста
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                    if (el.tagName === 'INPUT') {
-                        el.placeholder = translations[currentLang][key];
-                    } else {
-                        el.innerHTML = translations[currentLang][key];
-                    }
+                    if (el.tagName === 'INPUT') el.placeholder = translations[currentLang][key];
+                    else el.innerHTML = translations[currentLang][key];
                 }
             });
-            // Меняем текст кнопки переключения на противоположный язык
             document.getElementById('langToggle').textContent = currentLang === 'ru' ? 'EN' : 'RU';
             document.documentElement.lang = currentLang;
-            
-            // Если расширения уже загружены, перерисовываем их с новым языком
-            if (extensions.length > 0) {
-                renderExtensions(extensions); // Повторный рендер для перевода карточек
-            }
+            if (extensions.length > 0) renderExtensions(extensions);
         }
 
-        // Обработчик кнопки смены языка
         document.getElementById('langToggle').addEventListener('click', () => {
             currentLang = currentLang === 'ru' ? 'en' : 'ru';
             localStorage.setItem('lang', currentLang);
@@ -356,57 +411,42 @@
             const tags = (currentLang === 'en' && ext.tags_en) ? ext.tags_en : ext.tags;
             const updatedAt = (currentLang === 'en' && ext.updatedAt_en) ? ext.updatedAt_en : ext.updatedAt;
 
-            const tagsHtml = tags.map(tag => 
-                `<span class="px-2 py-1 text-xs font-medium bg-gray-800 text-gray-300 rounded-md border border-gray-700">${tag}</span>`
-            ).join('');
-
-            // Применяем разные цвета в зависимости от платформы
+            const tagsHtml = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+            
             const isMobile = platform === 'mobile';
-            const hoverBorder = isMobile ? 'hover:border-emerald-500/50' : 'hover:border-blue-500/50';
-            const titleHover = isMobile ? 'group-hover:text-emerald-400' : 'group-hover:text-blue-400';
-            const btnColor = isMobile ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/20' : 'bg-blue-600 hover:bg-blue-500 shadow-blue-900/20';
+            const cardClass = isMobile ? 'card mobile' : 'card desktop';
+            const btnClass = isMobile ? 'btn btn-green' : 'btn btn-blue';
 
-            // Полноценная кнопка ZIP (серого цвета, чтобы отличаться от CRX), если указан URL
             const zipButton = ext.downloadZipUrl ? `
-                <a href="${ext.downloadZipUrl}" download class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 border border-gray-600 text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
-                    <i data-lucide="download" class="w-4 h-4"></i>
+                <a href="${ext.downloadZipUrl}" download class="btn btn-gray">
+                    <i data-lucide="download" width="16" height="16"></i>
                     <span>${t_download_zip}</span>
                 </a>
             ` : '';
 
             const card = document.createElement('div');
-            // Добавлена ширина (w-full, calc) и макс. ширина, чтобы карточки были одинаковыми и центрировались
-            card.className = `w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-[400px] bg-gray-850 rounded-2xl p-6 border border-gray-800 transition-all hover:shadow-lg hover:-translate-y-1 flex flex-col group relative overflow-hidden ${hoverBorder}`;
+            card.className = cardClass;
             
             card.innerHTML = `
-                <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                
-                <div class="flex items-start justify-between mb-4 relative z-10">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 rounded-xl ${ext.bgColor}">
-                            <i data-lucide="${ext.icon}" class="w-8 h-8 ${ext.color}"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-white ${titleHover} transition-colors">${name}</h3>
-                            <div class="text-xs text-gray-500 mt-1">${t_version} ${ext.version}</div>
-                        </div>
+                <div class="card-header">
+                    <div class="card-icon ${ext.bgColor}">
+                        <i data-lucide="${ext.icon}" class="${ext.color}" width="32" height="32"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">${name}</div>
+                        <div class="card-version">${t_version} ${ext.version}</div>
                     </div>
                 </div>
                 
-                <p class="text-gray-400 text-sm mb-6 flex-grow relative z-10">
-                    ${description}
-                </p>
+                <div class="card-desc">${description}</div>
+                <div class="tags">${tagsHtml}</div>
                 
-                <div class="flex flex-wrap gap-2 mb-6 relative z-10">
-                    ${tagsHtml}
-                </div>
-                
-                <div class="mt-auto pt-4 border-t border-gray-800 flex flex-col xl:flex-row xl:items-center justify-between gap-3 relative z-10">
-                    <span class="text-xs text-gray-500">${t_updated} ${updatedAt}</span>
-                    <div class="flex items-stretch xl:items-center gap-2">
+                <div class="card-footer">
+                    <span class="card-date">${t_updated} ${updatedAt}</span>
+                    <div class="actions">
                         ${zipButton}
-                        <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 ${btnColor} text-white text-sm font-medium rounded-lg transition-colors shadow-lg">
-                            <i data-lucide="download" class="w-4 h-4"></i>
+                        <button onclick="forceDownload(event, '${ext.downloadUrl}')" class="${btnClass}" data-original-class="${btnClass}">
+                            <i data-lucide="download" width="16" height="16"></i>
                             <span>${t_download_crx}</span>
                         </button>
                     </div>
@@ -428,78 +468,62 @@
 
             noResults.classList.add('hidden');
 
-            // Фильтруем данные: все, у кого стоит "mobile" идут вниз, остальные (по умолчанию) - наверх (для ПК)
             const desktopExts = data.filter(ext => ext.platform !== 'mobile');
             const mobileExts = data.filter(ext => ext.platform === 'mobile');
 
             if (desktopExts.length > 0) {
                 desktopSection.classList.remove('hidden');
                 desktopExts.forEach(ext => desktopGrid.appendChild(createCardElement(ext, 'desktop')));
-            } else {
-                desktopSection.classList.add('hidden');
-            }
+            } else { desktopSection.classList.add('hidden'); }
 
             if (mobileExts.length > 0) {
                 mobileSection.classList.remove('hidden');
                 mobileExts.forEach(ext => mobileGrid.appendChild(createCardElement(ext, 'mobile')));
-            } else {
-                mobileSection.classList.add('hidden');
-            }
+            } else { mobileSection.classList.add('hidden'); }
 
             lucide.createIcons();
         }
 
-        // Функция принудительного скачивания (обход блокировки Chrome на .crx)
         window.forceDownload = async function(event, url) {
             event.preventDefault();
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
-            const originalClass = btn.className; // Запоминаем оригинальный класс кнопки
+            const originalClass = btn.getAttribute('data-original-class');
             const t_downloading = translations[currentLang].downloading;
             
-            // Включаем анимацию загрузки на кнопке
-            btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>${t_downloading}</span>`;
+            btn.innerHTML = `<i data-lucide="loader-2" width="16" height="16" class="spin"></i><span>${t_downloading}</span>`;
             lucide.createIcons();
             btn.style.pointerEvents = 'none';
 
             try {
-                // Скачиваем файл как "сырые" данные (blob)
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Сетевая ошибка при скачивании или файл не найден (404)');
+                if (!response.ok) throw new Error('Сетевая ошибка при скачивании');
                 
                 const blob = await response.blob();
                 const blobUrl = window.URL.createObjectURL(blob);
                 
-                // Создаем невидимую ссылку и кликаем по ней
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = blobUrl;
-                a.download = url.split('/').pop(); // Достаем имя файла из ссылки
+                a.download = url.split('/').pop();
                 document.body.appendChild(a);
                 a.click();
                 
-                // Очищаем память
                 window.URL.revokeObjectURL(blobUrl);
                 a.remove();
                 
-                // Возвращаем кнопку в нормальное состояние
                 btn.innerHTML = originalText;
                 lucide.createIcons();
                 btn.style.pointerEvents = 'auto';
             } catch (error) {
-                console.error('Ошибка скачивания:', error);
-                
-                // Показываем красивую ошибку прямо на кнопке вместо открытия новой вкладки
                 const errorText = currentLang === 'ru' ? 'Файл не найден' : 'File not found';
-                btn.innerHTML = `<i data-lucide="x-circle" class="w-4 h-4 text-white"></i><span>${errorText}</span>`;
-                // Ставим красные стили для ошибки
-                btn.className = "flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-red-900/20";
+                btn.innerHTML = `<i data-lucide="x-circle" width="16" height="16"></i><span>${errorText}</span>`;
+                btn.className = "btn btn-red";
                 lucide.createIcons();
                 
-                // Возвращаем как было через 3 секунды
                 setTimeout(() => {
                     btn.innerHTML = originalText;
-                    btn.className = originalClass; // Возвращаем именно тот цвет, который был (синий или изумрудный)
+                    btn.className = originalClass;
                     lucide.createIcons();
                     btn.style.pointerEvents = 'auto';
                 }, 3000);
@@ -511,36 +535,28 @@
                 const response = await fetch('extensions.json');
                 if (!response.ok) throw new Error('Network error');
                 extensions = await response.json();
-                
-                // Применяем переводы интерфейса и рендерим карточки
                 applyTranslations();
             } catch (error) {
-                console.error("Ошибка загрузки:", error);
-                const grid = document.getElementById('desktopGrid'); // fallback message container
                 document.getElementById('noResults').classList.add('hidden');
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-8 text-red-400 bg-red-900/10 border border-red-800/50 rounded-xl w-full">
-                        <p class="font-medium mb-2">Не удалось загрузить список расширений.</p>
-                        <p class="text-sm opacity-80">Убедитесь, что файл <code>extensions.json</code> существует рядом с <code>index.html</code>.</p>
+                desktopSection.classList.remove('hidden');
+                desktopGrid.innerHTML = `
+                    <div style="text-align: center; width: 100%; padding: 32px; background: rgba(127, 29, 29, 0.2); border: 1px solid rgba(127, 29, 29, 0.5); border-radius: 12px; color: #fca5a5;">
+                        <p style="font-weight: bold; margin-bottom: 8px;">Не удалось загрузить список расширений.</p>
+                        <p style="font-size: 14px;">Убедитесь, что файл <code>extensions.json</code> существует рядом с <code>index.html</code>.</p>
                     </div>`;
-                document.getElementById('desktopSection').classList.remove('hidden');
             }
         }
 
         loadExtensions();
 
-        // Поиск работает сразу по двум языкам
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
-            
             const filtered = extensions.filter(ext => {
                 const nameStr = (ext.name + ' ' + (ext.name_en || '')).toLowerCase();
                 const descStr = (ext.description + ' ' + (ext.description_en || '')).toLowerCase();
                 const tagsStr = (ext.tags.join(' ') + ' ' + (ext.tags_en ? ext.tags_en.join(' ') : '')).toLowerCase();
-                
                 return nameStr.includes(query) || descStr.includes(query) || tagsStr.includes(query);
             });
-            
             renderExtensions(filtered);
         });
     </script>
